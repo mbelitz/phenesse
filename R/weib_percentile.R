@@ -1,4 +1,5 @@
-#' Calculating the percentile bound of a distribution of onset/cessation.
+#' Calculating a percentile estimate of a seasonal abundance distribution from
+#' incidental observations.
 #'
 #' \code{weib_percentile} uses empirical bootstrapping to estimate a percentile
 #' of the Weibull distribution, given random variables.
