@@ -1,0 +1,16 @@
+Package: phenesse
+Title: Calculate phenological estimates for any percentile of a distribution
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Michael", family = "Belitz", comment = c(ORCID = "0000-0002-8162-5998"),
+           role = c("aut", "cre"),
+           email = "mbelitz@ufl.edu")
+Description: Calculates estimates of phenological metrics from incidental observaton data.
+             It can be used to estimtate a parameterized phenological metric and CIs 
+             from observation data for any percentile of a distribution. The package can 
+             also be used to estimate naive percentile (quantile) estimates and CIs using 
+             non-parametric bootstrapping.
+License: CC0
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
