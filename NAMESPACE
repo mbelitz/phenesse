@@ -3,3 +3,7 @@
 export(quantile_ci)
 export(weib_percentile)
 export(weib_percentile_ci)
+importFrom(boot,boot)
+importFrom(boot,boot.ci)
+importFrom(fitdistrplus,fitdist)
+importFrom(reconPlots,curve_intersect)

@@ -19,6 +19,7 @@
 #' @keywords phenology, quantile, percentile
 #'
 #' @export
+#' @importFrom boot boot boot.ci
 #'
 #' @examples
 #'

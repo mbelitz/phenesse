@@ -15,6 +15,8 @@
 #' @keywords phenology, weibull, percentile
 #'
 #' @export
+#' @importFrom fitdistrplus fitdist
+#' @importFrom reconPlots curve_intersect
 #'
 #' @examples
 #'

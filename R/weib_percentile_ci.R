@@ -17,6 +17,7 @@
 #' @keywords phenology, weibull, percentile
 #'
 #' @export
+#' @importFrom boot boot boot.ci
 #'
 #' @examples
 #'
