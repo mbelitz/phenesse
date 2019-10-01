@@ -30,3 +30,6 @@ observations <- c(1662, 1638, 1631, 1628, 1628, 1611, 1607, 1602, 1601, 1598)
 # Estimate when 90\% of dodo were left with 95\% CI
 weib_percentile_ci(observations, iterations = 100, percentile = 0.9, bootstraps = 100)
 }
+\keyword{percentile}
+\keyword{phenology,}
+\keyword{weibull,}

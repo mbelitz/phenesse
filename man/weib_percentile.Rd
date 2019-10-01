@@ -31,3 +31,6 @@ weib_percentile(observations, percentile = 0.9)
 Estimate when 50\% of dodo were left with 50 iterations for quicker processing
 weib_percentile(observations, percentile = 0.5, iterations = 50)
 }
+\keyword{percentile}
+\keyword{phenology,}
+\keyword{weibull,}
