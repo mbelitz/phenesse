@@ -2,7 +2,8 @@
 % Please edit documentation in R/weib_percentile.R
 \name{weib_percentile}
 \alias{weib_percentile}
-\title{Calculating the percentile bound of a distribution of onset/cessation.}
+\title{Calculating a percentile estimate of a seasonal abundance distribution from
+incidental observations.}
 \usage{
 weib_percentile(observations, percentile = 0.9, iterations = 100)
 }
