@@ -12,9 +12,13 @@
 #' bootstrapping to estimate bias of original CDF. The bias is used to calculate
 #' a bias corrected estimate of the percentile bound.
 #'
-#'@param bootstraps is the number of bootstraps you want to run to create the CIs
+#' @param bootstraps is the number of bootstraps you want to run to create the CIs
 #'
-#'@examples
+#' @keywords phenology, weibull, percentile
+#'
+#' @export
+#'
+#' @examples
 #'
 #' # Gather last 10 sightings of dodo
 #' observations <- c(1662, 1638, 1631, 1628, 1628, 1611, 1607, 1602, 1601, 1598)

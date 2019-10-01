@@ -16,6 +16,10 @@
 #' @param type A vector of character strings represenging the type of intervals
 #' required to calculate the CI. Defaults to "bca". See ??boot.ci for more information.
 #'
+#' @keywords phenology, quantile, percentile
+#'
+#' @export
+#'
 #' @examples
 #'
 #' #' # Gather last 10 sightings of dodo

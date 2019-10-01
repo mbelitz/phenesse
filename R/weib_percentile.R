@@ -12,6 +12,10 @@
 #' bootstrapping to estimate bias of original CDF. The bias is used to calculate
 #' a bias corrected estimate of the percentile bound.
 #'
+#' @keywords phenology, weibull, percentile
+#'
+#' @export
+#'
 #' @examples
 #'
 #' # Gather last 10 sightings of dodo
