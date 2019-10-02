@@ -30,7 +30,7 @@
 #' weib_percentile_ci(observations, iterations = 100, percentile = 0.9, bootstraps = 100)
 
 quantile_ci <- function(observations, percentile, bootstraps = 100000,
-                        conf = 0.95, type = "bca"){
+                        conf = 0.95, type = 'bca'){
 
   quantilefun <- function(data, i){
     d <- data[i]
@@ -40,8 +40,12 @@ quantile_ci <- function(observations, percentile, bootstraps = 100000,
   estimate_ci <- function(observations){
     bootstrap <- boot::boot(observations, quantilefun, R = bootstraps)
     boot_ci <- boot::boot.ci(bootstrap, conf = 0.95, type = type)
-    low_ci <- boot_ci$bca[4]
-    high_ci <- boot_ci$bca[5]
+    if(type == "bca"){
+      low_ci <- boot_ci$bca[4]
+      high_ci <- boot_ci$bca[5]} else{
+        low_ci <- boot_ci$percent[4]
+        high_ci <- boot_ci$percent[5]
+      }
     ci_df <- data.frame(estimate = bootstrap$t0, low_ci, high_ci)
     return(ci_df)
   }
