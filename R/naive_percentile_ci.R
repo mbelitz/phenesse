@@ -23,10 +23,11 @@
 #'
 #' @examples
 #'
-#' #' # Gather last 10 sightings of dodo
+#' Gather 10 sightings of an individuals - numbers represent day of year observed
 #' testobs <- c(150,160,162,164,168,170,172,176,178,188)
 #'
-#' # Estimate Naive percentile when 90% of dodo were left with 95% CI given last observations
+#' Estimate when 90% of individuals are still in the phenological state (e.g.,
+#' when 90% of plants are still in flower or when 90% of butterflies are still on wing)
 #' weib_percentile_ci(observations, iterations = 100, percentile = 0.9, bootstraps = 100)
 
 quantile_ci <- function(observations, percentile, bootstraps = 100000,
