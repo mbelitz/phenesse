@@ -24,7 +24,7 @@
 #' @examples
 #'
 #' #' # Gather last 10 sightings of dodo
-#' observations <- c(1662, 1638, 1631, 1628, 1628, 1611, 1607, 1602, 1601, 1598)
+#' testobs <- c(150,160,162,164,168,170,172,176,178,188)
 #'
 #' # Estimate Naive percentile when 90% of dodo were left with 95% CI given last observations
 #' weib_percentile_ci(observations, iterations = 100, percentile = 0.9, bootstraps = 100)
