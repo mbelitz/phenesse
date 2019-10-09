@@ -39,12 +39,12 @@ quantile_ci <- function(observations, percentile, bootstraps = 100000,
 
   estimate_ci <- function(observations){
     bootstrap <- boot::boot(observations, quantilefun, R = bootstraps)
-    boot_ci <- boot::boot.ci(bootstrap, conf = 0.95, type = type)
+    boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = 0.95, type = type), error = function(e) NA)
     if(type == "bca"){
-      low_ci <- boot_ci$bca[4]
-      high_ci <- boot_ci$bca[5]} else{
-        low_ci <- boot_ci$percent[4]
-        high_ci <- boot_ci$percent[5]
+      low_ci <- tryCatch(boot_ci$bca[4], error = function(e) NA)
+      high_ci <- tryCatch(boot_ci$bca[5], error = function(e) NA)} else{
+        low_ci <- tryCatch(boot_ci$percent[4], error = function(e) NA)
+        high_ci <- tryCatch(boot_ci$percent[5], error = function(e) NA)
       }
     ci_df <- data.frame(estimate = bootstrap$t0, low_ci, high_ci)
     return(ci_df)
@@ -52,3 +52,4 @@ quantile_ci <- function(observations, percentile, bootstraps = 100000,
   estimate <- estimate_ci(observations)
   return(estimate)
 }
+
