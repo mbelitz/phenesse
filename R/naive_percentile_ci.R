@@ -1,12 +1,15 @@
-#' Calculating the CIs of a naive (non-parameterized) estimate of a percentile of
-#' a vector of observations using non-parametric bootstrapping
+#' Calculating the confidence intervals (CIs) of a quantile or mean estimate of a
+#' a vector of observations using non-parametric bootstrapping.
 #'
-#' \code{naive_percentile} Estimates CI around a naive percentile estimate using
+#' \code{quantile_ci} Estimates CIs around a quantile percentile estimate using
 #' non-parameteric bootstrapping from the boot package
+#'
+#' \code{mean_ci} Estimates CIs around a mean estimate using non-parametric bootstrapping
+#' from the boot package
 #'
 #' @param observations A vector of observations given as numeric values
 #'
-#' @param percentile The naive percentile of interest
+#' @param percentile The percentile of interest
 #'
 #' @param bootstraps The number of bootstraps you want to run to create the CIs,
 #' defaults to 100000
@@ -16,7 +19,7 @@
 #' @param type A vector of character strings represenging the type of intervals
 #' required to calculate the CI. Defaults to "bca". See ??boot.ci for more information.
 #'
-#' @keywords phenology, quantile, percentile
+#' @keywords phenology, quantile, percentile, mean
 #'
 #' @export
 #' @importFrom boot boot boot.ci
@@ -54,4 +57,29 @@ quantile_ci <- function(observations, percentile, bootstraps = 100000,
   return(estimate)
 }
 
+#' mean_ci function - calculates the mean and uses non-parametric bootstrapping
+#' to calculate the confidence intervals
 
+mean_ci <- function(observations, bootstraps = 100000,
+                        conf = 0.95, type = 'bca'){
+
+  meanfun <- function(data, i){
+    d <- data[i]
+    return(mean(d))
+  }
+
+  estimate_ci <- function(observations){
+    bootstrap <- boot::boot(observations, meanfun, R = bootstraps)
+    boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = 0.95, type = type), error = function(e) NA)
+    if(type == "bca"){
+      low_ci <- tryCatch(boot_ci$bca[4], error = function(e) NA)
+      high_ci <- tryCatch(boot_ci$bca[5], error = function(e) NA)} else{
+        low_ci <- tryCatch(boot_ci$percent[4], error = function(e) NA)
+        high_ci <- tryCatch(boot_ci$percent[5], error = function(e) NA)
+      }
+    ci_df <- data.frame(estimate = bootstrap$t0, low_ci, high_ci)
+    return(ci_df)
+  }
+  estimate <- estimate_ci(observations)
+  return(estimate)
+}
