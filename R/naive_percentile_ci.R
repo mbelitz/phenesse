@@ -75,6 +75,9 @@ quantile_ci <- function(observations, percentile, bootstraps = 100000,
 
 #' mean_ci function - calculates the mean and uses non-parametric bootstrapping
 #' to calculate the confidence intervals
+#'
+#' @export
+#' @importFrom boot boot boot.ci
 
 mean_ci <- function(observations, bootstraps = 100000,
                         conf = 0.95, type = 'bca'){
