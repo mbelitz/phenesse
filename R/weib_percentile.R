@@ -1,6 +1,7 @@
 #' Calculating a percentile estimate of a seasonal abundance distribution from
 #' incidental observations.
 #'
+#' @description
 #' \code{weib_percentile} uses empirical bootstrapping to estimate a percentile
 #' of the Weibull distribution, given random variables.
 #'
@@ -12,26 +13,27 @@
 #' bootstrapping to estimate bias of original CDF. The bias is used to calculate
 #' a bias corrected estimate of the percentile bound.
 #'
-#' @keywords phenology, weibull, percentile
+#' @keywords phenology weibull percentile
 #'
-#' @export
 #' @importFrom fitdistrplus fitdist
 #'
 #' @examples
+#'\dontrun{
+#' # Gather sightings of iNaturalist observations for four species:
+#' # Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 #'
-#' Gather sightings of iNaturalist observations for four species:
-#' Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
+#' # Estimate when the first 50\% of individuals of the milkweed species
+#' # Asclepias syriaca have been observed.
 #'
-#' Estimate when the first 50% of individuals of the milkweed species
-#' Asclepias syriaca have been observed.
-#'
+#' data(inat_examples)
 #' a_syriaca <- subset(inat_examples, scientific_name == "Asclepias syriaca")
 #' weib_percentile(a_syriaca$doy, percentile = 0.5)
 #'
-#' Estimate when 90% of individuals of the milkweed species A. syriaca have been observed,
-#' using only 100 iterations for quicker processing
+#' # Estimate when 90\% of individuals of the milkweed species A. syriaca have been observed,
+#' # using only 100 iterations for quicker processing
 #' weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 100)
-
+#' }
+#' @export
 weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
 
   curve_intersect <- function(curve1, curve2, empirical=TRUE, domain=NULL) {
@@ -45,11 +47,11 @@ weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
 
     if (empirical) {
       # Approximate the functional form of both curves
-      curve1_f <- approxfun(curve1$x, curve1$y, rule = 2)
-      curve2_f <- approxfun(curve2$x, curve2$y, rule = 2)
+      curve1_f <- stats::approxfun(curve1$x, curve1$y, rule = 2)
+      curve2_f <- stats::approxfun(curve2$x, curve2$y, rule = 2)
 
       # Calculate the intersection of curve 1 and curve 2 along the x-axis
-      point_x <- uniroot(function(x) curve1_f(x) - curve2_f(x),
+      point_x <- stats::uniroot(function(x) curve1_f(x) - curve2_f(x),
                          c(min(curve1$x), max(curve1$x)))$root
 
       # Find where point_x is in curve 2
@@ -57,7 +59,7 @@ weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
     } else {
       # Calculate the intersection of curve 1 and curve 2 along the x-axis
       # within the given domain
-      point_x <- uniroot(function(x) curve1(x) - curve2(x), domain)$root
+      point_x <- stats::uniroot(function(x) curve1(x) - curve2(x), domain)$root
 
       # Find where point_x is in curve 2
       point_y <- curve2(point_x)
@@ -101,7 +103,7 @@ weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
 
     for(i in 1:length(observations)){
       df1 <- create_predict_df(observations)
-      sim_vector <- runif(n = length(observations),min = 0, max = 1)
+      sim_vector <- stats::runif(n = length(observations),min = 0, max = 1)
       df2 <- data.frame(x = observations, y = sim_vector[i])
       emptyvec[i] <- curve_intersect(df1, df2)$x
     }
@@ -112,14 +114,14 @@ weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
 
     new_df2 <- data.frame(x = observations, y = percentile)
 
-    theta_hat_i <- reconPlots::curve_intersect(new_df1, new_df2)$x
+    theta_hat_i <- curve_intersect(new_df1, new_df2)$x
 
     return(theta_hat_i)
   }
 
   theta_hat_df <- data.frame(x = observations, y = percentile)
 
-  theta_hat <- reconPlots::curve_intersect(create_predict_df(observations), theta_hat_df)[['x']]
+  theta_hat <- curve_intersect(create_predict_df(observations), theta_hat_df)[['x']]
 
   bias <- mean(replicate(n = iterations,
                          expr = get_theta_hat_i(observations = observations,

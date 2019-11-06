@@ -1,27 +1,32 @@
 #' Calculating the CIs of a percentile estimate of a seasonal abundance distribution
 #' using the non-parametric bootstrapping.
 #'
-#'\code{weib_percentile_ci} uses non-parametric bootstrapping from the boot package
+#' @description
+#' The function \code{weib_percentile_ci} uses non-parametric bootstrapping from the boot package
 #' to estimate 95% CIs
 #'
-#' @param observations is a vector of dates/time of observations given as numeric values
+#' @param observations is a vector of dates/time of observations given as
+#' numeric values
 #'
-#' @param percentile is the percentile of the cumulative distribution function of interest
+#' @param percentile is the percentile of the cumulative distribution function
+#' of interest
 #'
-#' @param iterations is the number of iterations you want to run to create empirical
-#' bootstrapping to estimate bias of original CDF. The bias is used to calculate
-#' a bias corrected estimate of the percentile bound.
+#' @param iterations is the number of iterations you want to run to create
+#' empirical bootstrapping to estimate bias of original CDF. The bias is used to
+#' calculate a bias corrected estimate of the percentile bound.
 #'
-#' @param bootstraps is the number of bootstraps you want to run to create the CIs
+#' @param bootstraps is the number of bootstraps you want to run to create the
+#' CIs
 #'
 #' @param type A vector of character strings represenging the type of intervals
-#' required to calculate the CI. Defaults to "bca". See ??boot.ci for more information.
+#' required to calculate the CI. Defaults to "bca". See ??boot.ci for more
+#' information.
 #'
-#' @param conf The confidence level wanted. Defaults to 95% CI.
+#' @param conf The confidence level wanted. Defaults to 95\% CI.
 #'
-#' @param parallel The type of parallel operation to be used (if any). If missing,
-#' the default is that no parallelization will occur. Parallelization options are
-#' "multicore" and "snow"
+#' @param parallelize The type of parallel operation to be used (if any). If
+#' missing, the default is that no parallelization will occur. Parallelization
+#' options are "multicore" and "snow"
 #'
 #' @param ncpus An integer that represents the number of processes to be used in parellel
 #' operation. One could chose this to be the number of available CPUs.
@@ -31,20 +36,24 @@
 #'
 #' @keywords phenology weibull percentile
 #'
-#' @export
 #' @importFrom boot boot boot.ci
 #'
 #' @examples
 #'
-#' Gather sightings of iNaturalist observations for four species:
-#' Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
+#' # Gather sightings of iNaturalist observations for four species:
+#' # Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 #'
-#' Estimate when the first 10% of individuals of the butterfly species
-#' Speyeria cybele are in flight.
+#' # Estimate when the first 10\% of individuals of the butterfly species
+#' # Speyeria cybele are in flight.
 #'
+#'\dontrun{
+#' data(inat_examples)
 #' s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
-#' weib_percentile_ci(observations = s_cybele$doy, iterations = 100, percentile = 0.1, bootstraps = 100)
-
+#' weib_percentile_ci(observations = s_cybele$doy, iterations = 100,
+#'                    percentile = 0.1, bootstraps = 100)
+#' }
+#'
+#'@export
 weib_percentile_ci <- function(observations, iterations, percentile, bootstraps,
                               type = "bca", conf = 0.95, parallelize = "no",
                               ncpus = getOption("boot.ncpus", 1L), cl = NULL){
