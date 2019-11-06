@@ -26,12 +26,18 @@
 #'
 #' @examples
 #'
-#' Gather 10 sightings of an individuals - numbers represent day of year observed
-#' testobs <- c(150,160,162,164,168,170,172,176,178,188)
+#' Gather sightings of iNaturalist observations for four species:
+#' Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 #'
-#' Estimate when 90% of individuals are still in the phenological state (e.g.,
-#' when 90% of plants are still in flower or when 90% of butterflies are still on wing)
-#' weib_percentile_ci(observations, iterations = 100, percentile = 0.9, bootstraps = 100)
+#' Estimate when the first 10% of individuals of the butterfly species
+#' Speyeria cybele are in flight.
+#'
+#' s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
+#' quantile_ci(observations = s_cybele$doy, percentile = 0.1)
+#'
+#' Estimate when the mean observation of Rudbeckia hirta for the year 2019 up to October
+#' r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
+#' mean_ci(observations = r_hirta$doy)
 
 quantile_ci <- function(observations, percentile, bootstraps = 100000,
                         conf = 0.95, type = 'bca'){
@@ -44,12 +50,22 @@ quantile_ci <- function(observations, percentile, bootstraps = 100000,
   estimate_ci <- function(observations){
     bootstrap <- boot::boot(observations, quantilefun, R = bootstraps)
     boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = 0.95, type = type), error = function(e) NA)
-    if(type == "bca"){
-      low_ci <- tryCatch(boot_ci$bca[4], error = function(e) NA)
-      high_ci <- tryCatch(boot_ci$bca[5], error = function(e) NA)} else{
-        low_ci <- tryCatch(boot_ci$percent[4], error = function(e) NA)
-        high_ci <- tryCatch(boot_ci$percent[5], error = function(e) NA)
-      }
+      if(type == "bca"){
+        low_ci <- boot_ci$bca[4]
+        high_ci <- boot_ci$bca[5]
+        } else if(type == "perc"){
+          low_ci <-boot_ci$percent[4]
+          high_ci <- boot_ci$percent[5]
+          } else if(type == "norm"){
+            low_ci <- boot_ci$normal[4]
+            high_ci <- boot_ci$normal[5]
+             } else if(type == "basic"){
+                low_ci <- boot_ci$basic[4]
+                high_ci <- boot_ci$basic[5]
+                } else{
+                  low_ci <- "Bootstrap type NA"
+                  high_ci <- "Bootstrap type NA"
+                }
     ci_df <- data.frame(estimate = bootstrap$t0, low_ci, high_ci)
     return(ci_df)
   }
@@ -72,11 +88,21 @@ mean_ci <- function(observations, bootstraps = 100000,
     bootstrap <- boot::boot(observations, meanfun, R = bootstraps)
     boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = 0.95, type = type), error = function(e) NA)
     if(type == "bca"){
-      low_ci <- tryCatch(boot_ci$bca[4], error = function(e) NA)
-      high_ci <- tryCatch(boot_ci$bca[5], error = function(e) NA)} else{
-        low_ci <- tryCatch(boot_ci$percent[4], error = function(e) NA)
-        high_ci <- tryCatch(boot_ci$percent[5], error = function(e) NA)
-      }
+      low_ci <- boot_ci$bca[4]
+      high_ci <- boot_ci$bca[5]
+    } else if(type == "perc"){
+      low_ci <-boot_ci$percent[4]
+      high_ci <- boot_ci$percent[5]
+    } else if(type == "norm"){
+      low_ci <- boot_ci$normal[4]
+      high_ci <- boot_ci$normal[5]
+    } else if(type == "basic"){
+      low_ci <- boot_ci$basic[4]
+      high_ci <- boot_ci$basic[5]
+    } else{
+      low_ci <- "Bootstrap type NA"
+      high_ci <- "Bootstrap type NA"
+    }
     ci_df <- data.frame(estimate = bootstrap$t0, low_ci, high_ci)
     return(ci_df)
   }
