@@ -19,18 +19,20 @@
 #'
 #' @examples
 #'
-#' Gather 10 sightings of an individuals - numbers represent day of year observed
-#' testobs <- c(150,160,162,164,168,170,172,176,178,188)
+#' Gather sightings of iNaturalist observations for four species:
+#' Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 #'
-#' Estimate when 90% of individuals are still in the phenological state (e.g.,
-#' when 90% of plants are still in flower or when 90% of butterflies are still on wing)
-#' weib_percentile(observations, percentile = 0.9)
+#' Estimate when the first 50% of individuals of the milkweed species
+#' Asclepias syriaca have been observed.
 #'
-#' Estimate when 50% of ndividuals are still in the phenological state
-#' with 50 iterations for quicker processing
-#' weib_percentile(observations, percentile = 0.5, iterations = 50)
+#' a_syriaca <- subset(inat_examples, scientific_name == "Asclepias syriaca")
+#' weib_percentile(a_syriaca$doy, percentile = 0.5)
+#'
+#' Estimate when 90% of individuals of the milkweed species A. syriaca have been observed,
+#' using only 100 iterations for quicker processing
+#' weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 100)
 
-weib_percentile <- function(observations, percentile = 0.9, iterations = 100){
+weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
 
   curve_intersect <- function(curve1, curve2, empirical=TRUE, domain=NULL) {
     if (!empirical & missing(domain)) {
