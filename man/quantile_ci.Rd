@@ -2,8 +2,8 @@
 % Please edit documentation in R/naive_percentile_ci.R
 \name{quantile_ci}
 \alias{quantile_ci}
-\title{Calculating the CIs of a naive (non-parameterized) estimate of a percentile of
-a vector of observations using non-parametric bootstrapping}
+\title{Calculating the confidence intervals (CIs) of a quantile or mean estimate of a
+a vector of observations using non-parametric bootstrapping.}
 \usage{
 quantile_ci(observations, percentile, bootstraps = 1e+05, conf = 0.95,
   type = "bca")
@@ -11,7 +11,7 @@ quantile_ci(observations, percentile, bootstraps = 1e+05, conf = 0.95,
 \arguments{
 \item{observations}{A vector of observations given as numeric values}
 
-\item{percentile}{The naive percentile of interest}
+\item{percentile}{The percentile of interest}
 
 \item{bootstraps}{The number of bootstraps you want to run to create the CIs,
 defaults to 100000}
@@ -22,17 +22,23 @@ defaults to 100000}
 required to calculate the CI. Defaults to "bca". See ??boot.ci for more information.}
 }
 \description{
-\code{naive_percentile} Estimates CI around a naive percentile estimate using
+\code{quantile_ci} Estimates CIs around a quantile percentile estimate using
 non-parameteric bootstrapping from the boot package
+}
+\details{
+\code{mean_ci} Estimates CIs around a mean estimate using non-parametric bootstrapping
+from the boot package
 }
 \examples{
 
-#' # Gather last 10 sightings of dodo
-observations <- c(1662, 1638, 1631, 1628, 1628, 1611, 1607, 1602, 1601, 1598)
+Gather 10 sightings of an individuals - numbers represent day of year observed
+testobs <- c(150,160,162,164,168,170,172,176,178,188)
 
-# Estimate Naive percentile when 90\% of dodo were left with 95\% CI given last observations
+Estimate when 90\% of individuals are still in the phenological state (e.g.,
+when 90\% of plants are still in flower or when 90\% of butterflies are still on wing)
 weib_percentile_ci(observations, iterations = 100, percentile = 0.9, bootstraps = 100)
 }
-\keyword{percentile}
+\keyword{mean}
+\keyword{percentile,}
 \keyword{phenology,}
 \keyword{quantile,}

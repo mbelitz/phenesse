@@ -24,10 +24,11 @@ to estimate 95% CIs
 }
 \examples{
 
-# Gather last 10 sightings of dodo
-observations <- c(1662, 1638, 1631, 1628, 1628, 1611, 1607, 1602, 1601, 1598)
+Gather 10 sightings of an individuals - numbers represent day of year observed
+testobs <- c(150,160,162,164,168,170,172,176,178,188)
 
-# Estimate when 90\% of dodo were left with 95\% CI
+Estimate when 90\% of individuals are still in the phenological state (e.g.,
+when 90\% of plants are still in flower or when 90\% of butterflies are still on wing)
 weib_percentile_ci(observations, iterations = 100, percentile = 0.9, bootstraps = 100)
 }
 \keyword{percentile}
