@@ -29,7 +29,7 @@
 #' @param cl An optional parallel or snow cluster for use if parallel = "snow". If not supplied,
 #' a cluster on the local machine is created for the duration of the boot call.
 #'
-#' @keywords phenology, weibull, percentile
+#' @keywords phenology weibull percentile
 #'
 #' @export
 #' @importFrom boot boot boot.ci
