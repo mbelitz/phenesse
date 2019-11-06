@@ -2,11 +2,14 @@
 % Please edit documentation in R/naive_percentile_ci.R
 \name{quantile_ci}
 \alias{quantile_ci}
+\alias{mean_ci}
 \title{Calculating the confidence intervals (CIs) of a quantile or mean estimate of a
 a vector of observations using non-parametric bootstrapping.}
 \usage{
 quantile_ci(observations, percentile, bootstraps = 1e+05, conf = 0.95,
   type = "bca")
+
+mean_ci(observations, bootstraps = 1e+05, conf = 0.95, type = "bca")
 }
 \arguments{
 \item{observations}{A vector of observations given as numeric values}
@@ -16,35 +19,47 @@ quantile_ci(observations, percentile, bootstraps = 1e+05, conf = 0.95,
 \item{bootstraps}{The number of bootstraps you want to run to create the CIs,
 defaults to 100000}
 
-\item{conf}{The confidence level wanted. Defaults to 95% CI.}
+\item{conf}{The confidence level wanted. Defaults to 95\% CI.}
 
 \item{type}{A vector of character strings represenging the type of intervals
 required to calculate the CI. Defaults to "bca". See ??boot.ci for more information.}
 }
 \description{
+Functions that estimate CIs using nonparametric bootstrapping.
+
 \code{quantile_ci} Estimates CIs around a quantile percentile estimate using
 non-parameteric bootstrapping from the boot package
-}
-\details{
+
 \code{mean_ci} Estimates CIs around a mean estimate using non-parametric bootstrapping
 from the boot package
 }
+\section{Functions}{
+\itemize{
+\item \code{quantile_ci}: Estimates CIs around a quantile percentile estimate using
+non-parameteric bootstrapping from the boot package
+
+\item \code{mean_ci}: Estimates CIs around a mean estimate
+using non-parametric bootstrapping from the boot package
+}}
+
 \examples{
+\dontrun{
+# Gather sightings of iNaturalist observations for four species:
+# Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 
-Gather sightings of iNaturalist observations for four species:
-Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
+# Estimate when the first 10\\\% of individuals of the butterfly species
+# Speyeria cybele are in flight.
 
-Estimate when the first 10\% of individuals of the butterfly species
-Speyeria cybele are in flight.
-
+data(inat_examples)
 s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
 quantile_ci(observations = s_cybele$doy, percentile = 0.1)
 
-Estimate when the mean observation of Rudbeckia hirta for the year 2019 up to October
+# Estimate when the mean observation of Rudbeckia hirta for the year 2019 up to October
 r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
 mean_ci(observations = r_hirta$doy)
 }
+}
 \keyword{mean}
-\keyword{percentile,}
-\keyword{phenology,}
-\keyword{quantile,}
+\keyword{percentile}
+\keyword{phenology}
+\keyword{quantile}

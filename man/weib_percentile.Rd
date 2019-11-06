@@ -21,20 +21,22 @@ a bias corrected estimate of the percentile bound.}
 of the Weibull distribution, given random variables.
 }
 \examples{
+\dontrun{
+# Gather sightings of iNaturalist observations for four species:
+# Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 
-Gather sightings of iNaturalist observations for four species:
-Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
+# Estimate when the first 50\\\% of individuals of the milkweed species
+# Asclepias syriaca have been observed.
 
-Estimate when the first 50\% of individuals of the milkweed species
-Asclepias syriaca have been observed.
-
+data(inat_examples)
 a_syriaca <- subset(inat_examples, scientific_name == "Asclepias syriaca")
 weib_percentile(a_syriaca$doy, percentile = 0.5)
 
-Estimate when 90\% of individuals of the milkweed species A. syriaca have been observed,
-using only 100 iterations for quicker processing
+# Estimate when 90\\\% of individuals of the milkweed species A. syriaca have been observed,
+# using only 100 iterations for quicker processing
 weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 100)
 }
+}
 \keyword{percentile}
-\keyword{phenology,}
-\keyword{weibull,}
+\keyword{phenology}
+\keyword{weibull}
