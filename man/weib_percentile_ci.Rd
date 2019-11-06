@@ -5,7 +5,9 @@
 \title{Calculating the CIs of a percentile estimate of a seasonal abundance distribution
 using the non-parametric bootstrapping.}
 \usage{
-weib_percentile_ci(observations, iterations, percentile, bootstraps)
+weib_percentile_ci(observations, iterations, percentile, bootstraps,
+  type = "bca", conf = 0.95, parallelize = "no",
+  ncpus = getOption("boot.ncpus", 1L), cl = NULL)
 }
 \arguments{
 \item{observations}{is a vector of dates/time of observations given as numeric values}
@@ -17,6 +19,21 @@ a bias corrected estimate of the percentile bound.}
 \item{percentile}{is the percentile of the cumulative distribution function of interest}
 
 \item{bootstraps}{is the number of bootstraps you want to run to create the CIs}
+
+\item{type}{A vector of character strings represenging the type of intervals
+required to calculate the CI. Defaults to "bca". See ??boot.ci for more information.}
+
+\item{conf}{The confidence level wanted. Defaults to 95% CI.}
+
+\item{ncpus}{An integer that represents the number of processes to be used in parellel
+operation. One could chose this to be the number of available CPUs.}
+
+\item{cl}{An optional parallel or snow cluster for use if parallel = "snow". If not supplied,
+a cluster on the local machine is created for the duration of the boot call.}
+
+\item{parallel}{The type of parallel operation to be used (if any). If missing,
+the default is that no parallelization will occur. Parallelization options are
+"multicore" and "snow"}
 }
 \description{
 \code{weib_percentile_ci} uses non-parametric bootstrapping from the boot package
@@ -24,12 +41,14 @@ to estimate 95% CIs
 }
 \examples{
 
-Gather 10 sightings of an individuals - numbers represent day of year observed
-testobs <- c(150,160,162,164,168,170,172,176,178,188)
+Gather sightings of iNaturalist observations for four species:
+Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 
-Estimate when 90\% of individuals are still in the phenological state (e.g.,
-when 90\% of plants are still in flower or when 90\% of butterflies are still on wing)
-weib_percentile_ci(observations, iterations = 100, percentile = 0.9, bootstraps = 100)
+Estimate when the first 10\% of individuals of the butterfly species
+Speyeria cybele are in flight.
+
+s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
+weib_percentile_ci(observations = s_cybele$doy, iterations = 100, percentile = 0.1, bootstraps = 100)
 }
 \keyword{percentile}
 \keyword{phenology,}
