@@ -23,6 +23,7 @@
 #' required to calculate the CI. Defaults to "bca". See ??boot.ci for more information.
 #'
 #' @keywords phenology quantile percentile
+#' @export
 #' @importFrom boot boot boot.ci
 #'
 #' @examples
