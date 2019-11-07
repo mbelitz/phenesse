@@ -22,14 +22,14 @@
 #' @param type A vector of character strings represenging the type of intervals
 #' required to calculate the CI. Defaults to "bca". See ??boot.ci for more information.
 #'
-#' @keywords phenology quantile percentile mean
+#' @keywords phenology estimates mean
 #' @importFrom boot boot boot.ci
 #'
 #' #' # Estimate when the mean observation of Rudbeckia hirta for the year 2019 up to October
 #' r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
 #' mean_ci(observations = r_hirta$doy)
 #' }
-#' @describeIn quantile_ci Estimates CIs around a quantile percentile estimate using
+#' @describeIn mean_ci Estimates CIs around a mean percentile estimate using
 #' non-parameteric bootstrapping from the boot package
 #' @export
 #' @importFrom boot boot boot.ci
