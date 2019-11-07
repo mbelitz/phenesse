@@ -83,6 +83,7 @@ quantile_ci <- function(observations, percentile, bootstraps = 100000,
 
 #' @describeIn quantile_ci Estimates CIs around a mean estimate
 #' using non-parametric bootstrapping from the boot package
+#' @export
 mean_ci <- function(observations, bootstraps = 100000,
                     conf = 0.95, type = 'bca'){
 
