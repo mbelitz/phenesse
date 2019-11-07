@@ -39,15 +39,7 @@
 #' data(inat_examples)
 #' s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
 #' quantile_ci(observations = s_cybele$doy, percentile = 0.1)
-#'
-#' # Estimate when the mean observation of Rudbeckia hirta for the year 2019 up to October
-#' r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
-#' mean_ci(observations = r_hirta$doy)
-#' }
-#' @describeIn quantile_ci Estimates CIs around a quantile percentile estimate using
-#' non-parameteric bootstrapping from the boot package
-#' @importFrom boot boot boot.ci
-#' @export
+
 quantile_ci <- function(observations, percentile, bootstraps = 100000,
                         conf = 0.95, type = 'bca'){
 
@@ -82,8 +74,13 @@ quantile_ci <- function(observations, percentile, bootstraps = 100000,
   return(estimate)
 }
 
-#' @describeIn quantile_ci Estimates CIs around a mean estimate
-#' using non-parametric bootstrapping from the boot package
+#' # Estimate when the mean observation of Rudbeckia hirta for the year 2019 up to October
+#' r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
+#' mean_ci(observations = r_hirta$doy)
+#' }
+#' @describeIn quantile_ci Estimates CIs around a quantile percentile estimate using
+#' non-parameteric bootstrapping from the boot package
+#' @importFrom boot boot boot.ci
 #' @export
 mean_ci <- function(observations, bootstraps = 100000,
                     conf = 0.95, type = 'bca'){
