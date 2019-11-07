@@ -1,8 +1,8 @@
 Package: phenesse
 Title: Package to estimate phenological metrics using presence-only data. 
 Version: 0.0.0.9000
-Authors@R: person("Michael", "Belitz", email = "mbelitz@ufl.edu", role = c("aut", "cre")),
-           person("Caitlin", "Campbell", email = "caitjcampbell@gmail.com", role = "ctb")
+Authors@R: c(person("Michael", "Belitz", email = "mbelitz@ufl.edu", role = c("aut", "cre")),
+           person("Caitlin", "Campbell", email = "caitjcampbell@gmail.com", role = "ctb"))
 Description: Package generates Weibull-parameratized estimates of phenology for any percentile of 
     a distribution. Non-parametric bootstrapping can be used to generate a confidence interval around those
     estimates. Additionally, this package offers an easy way to perform non-parametric bootstrapping around
