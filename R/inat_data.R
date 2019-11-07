@@ -1,7 +1,8 @@
-#' iNaturalist data downloaded for the Washington DC area using the bounding box
-#' bounds = c(38, -77, 39, -76)
+#' Example iNaturalist-sourced data
 #'
-#' Data was downloaded on 10/30/2019 for four species: Speyeria cybele, Danaus
+#' @description Example data downloaded from iNaturalist.org for the Washington,
+#' DC area using the bounding box bounds = c(38, -77, 39, -76). Data was
+#' downloaded on 10/30/2019 for four species: Speyeria cybele, Danaus
 #' plexippus, Rudbeckia hirta, and Asclepias syriaca. These data were not scored
 #' to mark phenology, so all life stages/reproductive stages are included in the
 #' download.The download only includes 2019 observations and the doy (day of year)
@@ -9,7 +10,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(inat_obs)
+#' @usage data(inat_examples)
 #'
 #' @format A data frame with 252 rows and 6 variables:
 #' \describe{
@@ -24,10 +25,12 @@
 #'
 #' @keywords datasets
 #'
-#' @references www.inaturalist.org
-#' @source \href{https://inaturalist.org}
+#' @references \url{https://inaturalist.org}
 #'
 #' @examples
-#' data(inat_obs)
-#' inat_obs <- attr(inat_obs)
-#' View(inat_obs)
+#' data(inat_examples)
+#' \dontrun{
+#' View(inat_examples)
+#' }
+
+"inat_examples"
