@@ -32,6 +32,14 @@ from the boot package
 non-parameteric bootstrapping from the boot package
 }}
 
+\examples{
+\dontrun{
+# Estimate when the mean observation of Rudbeckia hirta for the year 2019 up to October
+r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
+mean_ci(observations = r_hirta$doy)
+}
+
+}
 \keyword{estimates}
 \keyword{mean}
 \keyword{phenology}

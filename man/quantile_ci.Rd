@@ -27,6 +27,19 @@ Functions that estimate CIs using nonparametric bootstrapping around quantile es
 \code{quantile_ci} Estimates CIs around a quantile percentile estimate using
 non-parameteric bootstrapping from the boot package
 }
+\examples{
+\dontrun{
+# Gather sightings of iNaturalist observations for four species:
+# Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
+
+# Estimate when the first 10\\\% of individuals of the butterfly species
+# Speyeria cybele are in flight.
+
+data(inat_examples)
+s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
+quantile_ci(observations = s_cybele$doy, percentile = 0.1)
+}
+}
 \keyword{percentile}
 \keyword{phenology}
 \keyword{quantile}

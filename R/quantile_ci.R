@@ -37,6 +37,7 @@
 #' data(inat_examples)
 #' s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
 #' quantile_ci(observations = s_cybele$doy, percentile = 0.1)
+#' }
 
 quantile_ci <- function(observations, percentile, bootstraps = 100000,
                         conf = 0.95, type = 'bca'){

@@ -25,14 +25,17 @@
 #' @keywords phenology estimates mean
 #' @importFrom boot boot boot.ci
 #'
-#' #' # Estimate when the mean observation of Rudbeckia hirta for the year 2019 up to October
+#' @examples
+#'\dontrun{
+#' # Estimate when the mean observation of Rudbeckia hirta for the year 2019 up to October
 #' r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
 #' mean_ci(observations = r_hirta$doy)
 #' }
+#'
 #' @describeIn mean_ci Estimates CIs around a mean percentile estimate using
 #' non-parameteric bootstrapping from the boot package
 #' @export
-#' @importFrom boot boot boot.ci
+
 mean_ci <- function(observations, bootstraps = 100000,
                     conf = 0.95, type = 'bca'){
 
