@@ -14,7 +14,8 @@ Depends:
 Imports:
     boot,
     fitdistrplus,
-    stats
+    stats,
+    dplyr
 License: CC0
 Encoding: UTF-8
 LazyData: true

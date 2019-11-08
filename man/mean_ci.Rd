@@ -17,8 +17,6 @@ defaults to 100000}
 
 \item{type}{A vector of character strings represenging the type of intervals
 required to calculate the CI. Defaults to "bca". See ??boot.ci for more information.}
-
-\item{percentile}{The percentile of interest}
 }
 \description{
 Functions that estimate CIs using nonparametric bootstrapping around a mean estimate.
