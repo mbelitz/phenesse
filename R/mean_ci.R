@@ -12,8 +12,6 @@
 #'
 #' @param observations A vector of observations given as numeric values
 #'
-#' @param percentile The percentile of interest
-#'
 #' @param bootstraps The number of bootstraps you want to run to create the CIs,
 #' defaults to 100000
 #'
