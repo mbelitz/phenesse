@@ -3,10 +3,11 @@
 #'
 #' @description
 #'
-#' Functions that estimate CIs using nonparametric bootstrapping around a mean estimate.
+#' Functions that estimate CIs using nonparametric bootstrapping around a
+#' mean estimate.
 #'
-#' #' \code{mean_ci} Estimates CIs around a mean estimate using non-parametric bootstrapping
-#' from the boot package
+#' #' \code{mean_ci} Estimates CIs around a mean estimate using
+#'  non-parametric bootstrapping from the boot package
 #'
 #' @inheritParams boot::boot.ci
 #'
@@ -18,17 +19,19 @@
 #' @param conf The confidence level wanted. Defaults to 95\% CI.
 #'
 #' @param type A vector of character strings represenging the type of intervals
-#' required to calculate the CI. Defaults to "bca". See ??boot.ci for more information.
+#' required to calculate the CI. Defaults to "bca". See ??boot.ci
+#' for more information.
 #'
 #' @keywords phenology estimates mean
 #' @importFrom boot boot boot.ci
 #'
 #' @examples
-#'\dontrun{
-#' # Estimate when the mean observation of Rudbeckia hirta for the year 2019 up to October
+#' Estimate when the mean observation of Rudbeckia hirta for the year 2019 up
+#' to October
 #' r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
-#' mean_ci(observations = r_hirta$doy)
-#' }
+#' mean_ci(observations = r_hirta$doy , bootstraps = 100) # note low number of
+#' bootstraps for processing speed
+#'
 #'
 #' @describeIn mean_ci Estimates CIs around a mean percentile estimate using
 #' non-parameteric bootstrapping from the boot package
@@ -44,7 +47,8 @@ mean_ci <- function(observations, bootstraps = 100000,
 
   estimate_ci <- function(observations){
     bootstrap <- boot::boot(observations, meanfun, R = bootstraps)
-    boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = 0.95, type = type), error = function(e) NA)
+    boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = 0.95, type = type),
+                        error = function(e) NA)
     if(type == "bca"){
       low_ci <- boot_ci$bca[4]
       high_ci <- boot_ci$bca[5]

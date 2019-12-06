@@ -60,13 +60,16 @@ weib_percentile_ci <- function(observations, iterations, percentile, bootstraps,
 
   weibfun <- function(data, i){
     d <- data[i]
-    return(phenesse::weib_percentile(d, iterations = iterations, percentile = percentile))
+    return(phenesse::weib_percentile(d, iterations = iterations,
+                                     percentile = percentile))
   }
 
   estimate_ci <- function(observations){
-    bootstrap <- boot::boot(observations, weibfun, R = bootstraps, parallel = parallelize,
+    bootstrap <- boot::boot(observations, weibfun, R = bootstraps,
+                            parallel = parallelize,
                             ncpus = ncpus, cl = cl)
-    boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = conf, type = type), error = function(e) NA)
+    boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = conf, type = type),
+                        error = function(e) NA)
     if(type == "bca"){
       low_ci <- boot_ci$bca[4]
       high_ci <- boot_ci$bca[5]

@@ -3,7 +3,8 @@
 #'
 #' @description
 #'
-#' Functions that estimate CIs using nonparametric bootstrapping around quantile estimates.
+#' Functions that estimate CIs using nonparametric bootstrapping around
+#' quantile estimates.
 #'
 #' \code{quantile_ci} Estimates CIs around a quantile percentile estimate using
 #' non-parameteric bootstrapping from the boot package
@@ -20,7 +21,8 @@
 #' @param conf The confidence level wanted. Defaults to 95\% CI.
 #'
 #' @param type A vector of character strings represenging the type of intervals
-#' required to calculate the CI. Defaults to "bca". See ??boot.ci for more information.
+#' required to calculate the CI. Defaults to "bca".
+#' See ??boot.ci for more information.
 #'
 #' @keywords phenology quantile percentile
 #' @export
@@ -49,7 +51,8 @@ quantile_ci <- function(observations, percentile, bootstraps = 100000,
 
   estimate_ci <- function(observations){
     bootstrap <- boot::boot(observations, quantilefun, R = bootstraps)
-    boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = conf, type = type), error = function(e) NA)
+    boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = conf, type = type),
+                        error = function(e) NA)
     if(type == "bca"){
       low_ci <- boot_ci$bca[4]
       high_ci <- boot_ci$bca[5]
