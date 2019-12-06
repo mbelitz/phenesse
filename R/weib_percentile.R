@@ -34,7 +34,7 @@
 #' # Estimate when 90\% of individuals of the milkweed species A. syriaca have
 #' been observed,
 #' # using only 100 iterations for quicker processing
-#' weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 100)
+#' weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 10)
 #' }
 #' @export
 weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
@@ -112,7 +112,7 @@ weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
 
     emptyvec <- vector(mode = "numeric", length = length(observations))
 
-    for(i in 1:length(observations)){
+    for(i in seq_along(observations)){
       df1 <- create_predict_df(observations)
       sim_vector <- stats::runif(n = length(observations),min = 0, max = 1)
       df2 <- data.frame(x = observations, y = sim_vector[i])
