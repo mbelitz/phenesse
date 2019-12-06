@@ -2,8 +2,8 @@
 #' distribution using the non-parametric bootstrapping.
 #'
 #' @description
-#' The function \code{weib_percentile_ci} uses non-parametric bootstrapping
-#' from the boot package to estimate 95% CIs
+#' \code{weib_percentile_ci} uses non-parametric bootstrapping
+#' from the boot package to estimate 95% CIs around a weib_percentile estimate
 #'
 #' @param observations is a vector of dates/time of observations given as
 #' numeric values
