@@ -58,9 +58,9 @@ weib_percentile(observations = s_cybele$doy, percentile = 0.1, iterations = 20)
 weib_percentile(observations = s_cybele$doy, percentile = 0.5, iterations = 20)
 ```
 
-# Use non-parametric bootsrapping to calculate confidence interaval of estimate
+# Use non-parametric bootstrapping to calculate confidence interval of estimate
 
-## CAUTION: Caclulating confidence interval of Weibull-corrected estimates are computationally expensive. Consider options to parallelize calculations
+## CAUTION: Calculating confidence interval of Weibull-corrected estimates are computationally expensive. Consider options to parallelize calculations
 
 Estimate the 50% of when Speyeria cybele were observed in 2019 and calculate CI
 
@@ -75,7 +75,7 @@ s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
 # using for analyses.
 ```
 
-# Use functions to calculate confidence interval of quanitle function and mean estimates
+# Use functions to calculate confidence interval of quantile function and mean estimates
 
 Estimate the 10% and 50% phenometrics and confidence intervals for a quantile estimate of Rudbeckia hirta.
 
