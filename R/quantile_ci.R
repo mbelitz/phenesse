@@ -38,7 +38,7 @@
 #'
 #' data(inat_examples)
 #' s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
-#' quantile_ci(observations = s_cybele$doy, percentile = 0.1)
+#' quantile_ci(observations = s_cybele$doy, percentile = 0.1, bootstraps = 100)
 #' }
 
 quantile_ci <- function(observations, percentile, bootstraps = 100000,
@@ -51,8 +51,8 @@ quantile_ci <- function(observations, percentile, bootstraps = 100000,
 
   estimate_ci <- function(observations){
     bootstrap <- boot::boot(observations, quantilefun, R = bootstraps)
-    boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = conf, type = type),
-                        error = function(e) NA)
+    boot_ci <- boot::boot.ci(bootstrap, conf = conf, type = type)
+
     if(type == "bca"){
       low_ci <- boot_ci$bca[4]
       high_ci <- boot_ci$bca[5]

@@ -6,8 +6,8 @@
 #' Functions that estimate CIs using nonparametric bootstrapping around a
 #' mean estimate.
 #'
-#' #' \code{mean_ci} Estimates CIs around a mean estimate using
-#'  non-parametric bootstrapping from the boot package
+#' \code{mean_ci} Estimates CIs around a mean estimate using
+#' non-parametric bootstrapping from the boot package
 #'
 #' @inheritParams boot::boot.ci
 #'
@@ -26,11 +26,11 @@
 #' @importFrom boot boot boot.ci
 #'
 #' @examples
-#' Estimate when the mean observation of Rudbeckia hirta for the year 2019 up
-#' to October
+#' # Estimate when the mean observation of Rudbeckia hirta for the year 2019 up
+#' # to October
 #' r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
 #' mean_ci(observations = r_hirta$doy , bootstraps = 100) # note low number of
-#' bootstraps for processing speed
+#' # bootstraps for processing speed
 #'
 #'
 #' @describeIn mean_ci Estimates CIs around a mean percentile estimate using

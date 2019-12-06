@@ -8,13 +8,15 @@ incidental observations.}
 weib_percentile(observations, percentile = 0.9, iterations = 500)
 }
 \arguments{
-\item{observations}{is a vector of dates/time of observations given as integers}
+\item{observations}{is a vector of dates/time of observations
+given as integers}
 
-\item{percentile}{is the percentile of the cumulative distribution function of interest}
+\item{percentile}{is the percentile of the cumulative distribution function
+of interest}
 
-\item{iterations}{is the number of iterations you want to run to create empirical
-bootstrapping to estimate bias of original CDF. The bias is used to calculate
-a bias corrected estimate of the percentile bound.}
+\item{iterations}{is the number of iterations you want to use to bootstrap
+an estimate of bias of the original CDF. The bias is used to calculate
+a Weibull-corrected estimate of the percentile bound.}
 }
 \description{
 \code{weib_percentile} uses empirical bootstrapping to estimate a percentile
@@ -30,11 +32,12 @@ of the Weibull distribution, given random variables.
 
 data(inat_examples)
 a_syriaca <- subset(inat_examples, scientific_name == "Asclepias syriaca")
-weib_percentile(a_syriaca$doy, percentile = 0.5)
+weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 10)
 
-# Estimate when 90\\\% of individuals of the milkweed species A. syriaca have been observed,
+# Estimate when 90\\\% of individuals of the milkweed species A. syriaca have
+been observed,
 # using only 100 iterations for quicker processing
-weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 100)
+weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 10)
 }
 }
 \keyword{percentile}

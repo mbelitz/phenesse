@@ -29,7 +29,7 @@
 #'
 #' data(inat_examples)
 #' a_syriaca <- subset(inat_examples, scientific_name == "Asclepias syriaca")
-#' weib_percentile(a_syriaca$doy, percentile = 0.5)
+#' weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 10)
 #'
 #' # Estimate when 90\% of individuals of the milkweed species A. syriaca have
 #' been observed,

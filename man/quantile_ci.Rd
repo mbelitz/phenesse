@@ -19,10 +19,12 @@ defaults to 100000}
 \item{conf}{The confidence level wanted. Defaults to 95\% CI.}
 
 \item{type}{A vector of character strings represenging the type of intervals
-required to calculate the CI. Defaults to "bca". See ??boot.ci for more information.}
+required to calculate the CI. Defaults to "bca".
+See ??boot.ci for more information.}
 }
 \description{
-Functions that estimate CIs using nonparametric bootstrapping around quantile estimates.
+Functions that estimate CIs using nonparametric bootstrapping around
+quantile estimates.
 
 \code{quantile_ci} Estimates CIs around a quantile percentile estimate using
 non-parameteric bootstrapping from the boot package
@@ -37,7 +39,7 @@ non-parameteric bootstrapping from the boot package
 
 data(inat_examples)
 s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
-quantile_ci(observations = s_cybele$doy, percentile = 0.1)
+quantile_ci(observations = s_cybele$doy, percentile = 0.1, bootstraps = 100)
 }
 }
 \keyword{percentile}
