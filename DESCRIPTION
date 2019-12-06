@@ -1,6 +1,6 @@
 Package: phenesse
 Title: Package to estimate phenological metrics using presence-only data 
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: c(person("Michael", "Belitz", email = "mbelitz@ufl.edu", role = c("aut", "cre")),
            person("Caitlin", "Campbell", email = "caitjcampbell@gmail.com", role = "ctb"))
 Description: Package generates Weibull-parameratized estimates of phenology for any percentile of 
