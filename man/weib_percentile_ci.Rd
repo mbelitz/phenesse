@@ -41,8 +41,8 @@ If not supplied, a cluster on the local machine is created for
 the duration of the boot call.}
 }
 \description{
-The function \code{weib_percentile_ci} uses non-parametric bootstrapping
-from the boot package to estimate 95% CIs
+\code{weib_percentile_ci} uses non-parametric bootstrapping
+from the boot package to estimate 95% CIs around a weib_percentile estimate
 }
 \examples{
 

@@ -25,7 +25,8 @@ library(phenesse)
 
 # Overview
 
-The R package 'phenesse' provides functions to calculate phenological estimates for multiple phenological metrics. 
+The R package 'phenesse' provides functions to calculate phenological estimates for multiple phenological metrics. It can be especially useful when estimating the onset or offset of a 
+phenological event using presence-only data. 
 
 ```{r load_phenesse}
 library(phenesse)
