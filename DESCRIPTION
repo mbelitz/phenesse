@@ -4,9 +4,9 @@ Version: 1.0.0
 Authors@R: c(person("Michael", "Belitz", email = "mbelitz@ufl.edu", role = c("aut", "cre")),
            person("Caitlin", "Campbell", email = "caitjcampbell@gmail.com", role = "ctb"))
 Description: Package generates Weibull-parameratized estimates of phenology for any percentile of 
-    a distribution. Non-parametric bootstrapping can be used to generate a confidence interval around those
-    estimates. Additionally, this package offers an easy way to perform non-parametric bootstrapping around
-    quantile estimates or mean estimates.
+    a distribution. Non-parametric bootstrapping can be used to generate confidence intervals around those
+    estimates. Additionally, this package offers an easy way to perform non-parametric bootstrapping to 
+    generate confidence intervals for quantile estimates or mean estimates.
 Suggests: 
     knitr,
     rmarkdown,
@@ -17,8 +17,7 @@ Depends:
 Imports:
     boot,
     fitdistrplus,
-    stats,
-    dplyr
+    stats
 License: CC0
 URL: https://github.com/mbelitz/phenesse
 BugReports: https://github.com/mbelitz/phenesse/issues
