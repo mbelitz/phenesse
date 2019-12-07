@@ -5,8 +5,13 @@
 \title{Calculating the confidence intervals (CIs) of a quantile estimate of a
 a vector of observations using non-parametric bootstrapping.}
 \usage{
-quantile_ci(observations, percentile, bootstraps = 1e+05, conf = 0.95,
-  type = "bca")
+quantile_ci(
+  observations,
+  percentile,
+  bootstraps = 1e+05,
+  conf = 0.95,
+  type = "bca"
+)
 }
 \arguments{
 \item{observations}{A vector of observations given as numeric values}
