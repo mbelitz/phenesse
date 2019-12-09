@@ -1,9 +1,13 @@
-# Cran Submission Comments
+## Test environments
+* local Windows (mingw32) install, R 4.0.0
+* OS X install, R 3.6.0
+* win-builder (devel and release)
 
-## First submission (12/6/2019) Comments
+## R CMD check results
+There were no ERRORs or WARNINGs.
 
-The Title field should be in title case.
+There was 1 NOTE:
+New submission
 
-"Package" can also be omitted from the Description field.
-
-Is there some reference about the method you can add in the Description field?
+## Downstream dependencies
+There are currently no downstream dependencies for this package.
