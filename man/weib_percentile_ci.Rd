@@ -5,17 +5,9 @@
 \title{Calculating the CIs of a percentile estimate of a seasonal abundance
 distribution using the non-parametric bootstrapping.}
 \usage{
-weib_percentile_ci(
-  observations,
-  iterations,
-  percentile,
-  bootstraps,
-  type = "bca",
-  conf = 0.95,
-  parallelize = "no",
-  ncpus = getOption("boot.ncpus", 1L),
-  cl = NULL
-)
+weib_percentile_ci(observations, iterations, percentile, bootstraps,
+  type = "bca", conf = 0.95, parallelize = "no",
+  ncpus = getOption("boot.ncpus", 1L), cl = NULL)
 }
 \arguments{
 \item{observations}{is a vector of dates/time of observations given as
