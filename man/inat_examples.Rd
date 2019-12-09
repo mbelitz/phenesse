@@ -11,8 +11,8 @@
    \item{longitude}{longitude where observations occurred}
    \item{common_name}{common name related to species}
    \item{observed_on}{original date listed of observation}
-   \item{doy}{day of year when the observation occurred, variable created by MW Belitz
-   using the package lubridate}
+   \item{doy}{day of year when the observation occurred,
+   variable created by MW Belitz using the package lubridate}
    }}
 \usage{
 data(inat_examples)
@@ -23,8 +23,9 @@ DC area using the bounding box bounds = c(38, -77, 39, -76). Data was
 downloaded on 10/30/2019 for four species: Speyeria cybele, Danaus
 plexippus, Rudbeckia hirta, and Asclepias syriaca. These data were not scored
 to mark phenology, so all life stages/reproductive stages are included in the
-download.The download only includes 2019 observations and the doy (day of year)
-column was added post data download by MW Belitz using the lubridate package.
+download.The download only includes 2019 observations and the doy
+(day of year)column was added post data download by MW Belitz using the
+lubridate package.
 }
 \examples{
 data(inat_examples)

@@ -1,0 +1,97 @@
+---
+title: "phenesse vignette"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    keep_md: true
+vignette: >
+  %\VignetteIndexEntry{phenesse vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(
+  cache = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(phenesse)
+
+```
+
+**Contact Information:** Michael W. Belitz (<mbelitz@ufl.edu>)
+
+# Overview
+
+The R package 'phenesse' provides functions to calculate phenological estimates for multiple phenological metrics. It can be especially useful when estimating the onset or offset of a 
+phenological event using presence-only data. 
+
+```{r load_phenesse}
+library(phenesse)
+```
+
+# Loading example data
+
+We provide example incidental observations from iNaturalist for four species and a small extent of the United States. These data are for the year 2019 up until mid October and are not scored by phenological phases. The four species are Speyeria cybele, Danaus plexippus, Rudbeckia hirta, and Asclepias syriaca. 
+
+example iNaturalist data:
+
+```{r load_iNat_data}
+inat_examples <- inat_examples
+```
+
+# Use the Weibull-corrected estimates for any percentile of a distribution. 
+
+Estimate the onset, 10% and 50% of when Speyeria cybele has been observed in 2019 across the entire extent.
+
+```{r Speyeria_cybele_estimates}
+s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
+
+# calculate onset, note iterations are much lower than desired for quick 
+# vignette knit. Increase interations for robust calculations
+weib_percentile(observations = s_cybele$doy, percentile = 0, iterations = 20)
+#calculate 1st percentile
+weib_percentile(observations = s_cybele$doy, percentile = 0.1, iterations = 20)
+#calculate 50th percentile
+weib_percentile(observations = s_cybele$doy, percentile = 0.5, iterations = 20)
+```
+
+# Use non-parametric bootstrapping to calculate confidence interval of estimate
+
+## CAUTION: Calculating confidence interval of Weibull-corrected estimates are computationally expensive. Consider options to parallelize calculations
+
+Estimate the 50% of when Speyeria cybele were observed in 2019 and calculate CI
+
+```{r Speyeria_cybele_CIestimates}
+s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
+
+# calculate onset - note ignoring for vignette test
+#weib_percentile_ci(observations = s_cybele$doy, iterations = 50,
+# percentile = 0.5, bootstraps = 50)
+# note warnings of extreme order points used as endpoints is due to the 
+# low number of bootsraps used. Please use higher number of bootstraps if 
+# using for analyses.
+```
+
+# Use functions to calculate confidence interval of quantile function and mean estimates
+
+Estimate the 10% and 50% phenometrics and confidence intervals for a quantile estimate of Rudbeckia hirta.
+
+```{r quantile_CIestimates}
+r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
+
+# calculate 50% quantile and CIs
+quantile_ci(observations = r_hirta$doy, percentile = 0.5, bootstraps = 100)
+```
+
+Calculate the mean estimate and confidence intervals of the estimate of Rudbeckia hirta.
+
+```{r mean_CIestimates}
+r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
+
+# calculate 50% quantile and CIs
+mean_ci(observations = r_hirta$doy, bootstraps = 100)
+```
+

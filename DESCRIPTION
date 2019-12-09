@@ -1,8 +1,21 @@
 Package: phenesse
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
-Authors@R: person("Michael", "Belitz", email = "mbelitz@ufl.edu", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Title: Estimate Phenological Metrics using Presence-Only Data 
+Version: 0.1.0
+Authors@R: c(person("Michael", "Belitz", email = "mbelitz@ufl.edu", role = c("aut", "cre")),
+           person("Caitlin", "Campbell", email = "caitjcampbell@gmail.com", role = "ctb"))
+Description: Generates Weibull-parameterized estimates of phenology for any percentile of 
+    a distribution using the framework established in Cooke (1979)
+    <doi.org/10.1093/biomet/66.2.367>. Non-parametric bootstrapping can be used 
+    to generate confidence intervals around those estimates. 
+    Additionally, this package offers an easy way to perform non-parametric 
+    bootstrapping to generate confidence intervals for quantile estimates or 
+    mean estimates.
+Maintainer: Michael Belitz <mbelitz@ufl.edu>
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
 Depends: 
     R (>= 3.5)
 Imports:
@@ -10,6 +23,8 @@ Imports:
     fitdistrplus,
     stats
 License: CC0
+URL: https://github.com/mbelitz/phenesse
+BugReports: https://github.com/mbelitz/phenesse/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2

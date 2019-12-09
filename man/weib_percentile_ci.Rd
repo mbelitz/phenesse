@@ -2,12 +2,20 @@
 % Please edit documentation in R/weib_percentile_ci.R
 \name{weib_percentile_ci}
 \alias{weib_percentile_ci}
-\title{Calculating the CIs of a percentile estimate of a seasonal abundance distribution
-using the non-parametric bootstrapping.}
+\title{Calculating the CIs of a percentile estimate of a seasonal abundance
+distribution using the non-parametric bootstrapping.}
 \usage{
-weib_percentile_ci(observations, iterations, percentile, bootstraps,
-  type = "bca", conf = 0.95, parallelize = "no",
-  ncpus = getOption("boot.ncpus", 1L), cl = NULL)
+weib_percentile_ci(
+  observations,
+  iterations,
+  percentile,
+  bootstraps,
+  type = "bca",
+  conf = 0.95,
+  parallelize = "no",
+  ncpus = getOption("boot.ncpus", 1L),
+  cl = NULL
+)
 }
 \arguments{
 \item{observations}{is a vector of dates/time of observations given as
@@ -33,29 +41,30 @@ information.}
 missing, the default is that no parallelization will occur. Parallelization
 options are "multicore" and "snow"}
 
-\item{ncpus}{An integer that represents the number of processes to be used in parellel
-operation. One could chose this to be the number of available CPUs.}
+\item{ncpus}{An integer that represents the number of processes to be
+used in parellel operation.}
 
-\item{cl}{An optional parallel or snow cluster for use if parallel = "snow". If not supplied,
-a cluster on the local machine is created for the duration of the boot call.}
+\item{cl}{An optional parallel or snow cluster for use if parallel = "snow".
+If not supplied, a cluster on the local machine is created for
+the duration of the boot call.}
 }
 \description{
-The function \code{weib_percentile_ci} uses non-parametric bootstrapping from the boot package
-to estimate 95% CIs
+\code{weib_percentile_ci} uses non-parametric bootstrapping
+from the boot package to estimate 95% CIs around a weib_percentile estimate
 }
 \examples{
 
 # Gather sightings of iNaturalist observations for four species:
 # Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 
-# Estimate when the first 10\\\% of individuals of the butterfly species
+# Estimate when the first 50 percent of individuals of the butterfly species
 # Speyeria cybele are in flight.
 
 \dontrun{
 data(inat_examples)
 s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
-weib_percentile_ci(observations = s_cybele$doy, iterations = 100,
-                   percentile = 0.1, bootstraps = 100)
+weib_percentile_ci(observations = s_cybele$doy, iterations = 10,
+                   percentile = 0.5, bootstraps = 10)
 }
 
 }
