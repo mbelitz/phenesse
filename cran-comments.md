@@ -1,3 +1,9 @@
+## Resubmission
+* Changed package title to title case
+* Added doi citation to package description
+* Removed work "package" from package description
+* Indcluded test environments, CMD check results, and dependency issues in cran-comments
+
 ## Test environments
 * local Windows (mingw32) install, R 4.0.0
 * local OS X install, R 3.6.0
