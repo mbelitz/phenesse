@@ -1,9 +1,20 @@
-# Cran Submission Comments
+## Resubmission
+* Changed package title to title case
+* Added doi citation to package description
+* Removed work "package" from package description
+* Indcluded test environments, CMD check results, and dependency issues in cran-comments
 
-## First submission (12/6/2019) Comments
+## Test environments
+* local Windows (mingw32) install, R 4.0.0
+* local OS X install, R 3.6.0
+* Ubuntu 16.04 (travis-ci)
+* win-builder (devel and release)
 
-The Title field should be in title case.
+## R CMD check results
+There were no ERRORs or WARNINGs.
 
-"Package" can also be omitted from the Description field.
+There was 1 NOTE:
+New submission
 
-Is there some reference about the method you can add in the Description field?
+## Downstream dependencies
+There are currently no downstream dependencies for this package.
