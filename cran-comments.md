@@ -1,6 +1,7 @@
 ## Test environments
 * local Windows (mingw32) install, R 4.0.0
-* OS X install, R 3.6.0
+* local OS X install, R 3.6.0
+* Ubuntu 16.04 (travis-ci)
 * win-builder (devel and release)
 
 ## R CMD check results
