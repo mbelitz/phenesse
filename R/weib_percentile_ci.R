@@ -18,7 +18,7 @@
 #' @param bootstraps is the number of bootstraps you want to run to create the
 #' CIs
 #'
-#' @param type A vector of character strings represenging the type of intervals
+#' @param type A vector of character strings representing the type of intervals
 #' required to calculate the CI. Defaults to "bca". See ??boot.ci for more
 #' information.
 #'
@@ -29,7 +29,7 @@
 #' options are "multicore" and "snow"
 #'
 #' @param ncpus An integer that represents the number of processes to be
-#' used in parellel operation.
+#' used in parallel operation.
 #'
 #' @param cl An optional parallel or snow cluster for use if parallel = "snow".
 #' If not supplied, a cluster on the local machine is created for

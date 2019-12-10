@@ -17,7 +17,7 @@
 #'
 #' @param conf The confidence level wanted. Defaults to 95\% CI.
 #'
-#' @param type A vector of character strings represenging the type of intervals
+#' @param type A vector of character strings representing the type of intervals
 #' required to calculate the CI. Defaults to "bca".
 #' See ??boot.ci for more information.
 #'
