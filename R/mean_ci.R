@@ -18,6 +18,8 @@
 #' required to calculate the CI. Defaults to "bca". See ??boot.ci
 #' for more information.
 #'
+#' @return The estimated CIs around a mean estimate.
+#'
 #' @keywords phenology estimates mean
 #' @importFrom boot boot boot.ci
 #'
@@ -33,7 +35,6 @@
 #' @describeIn mean_ci Estimates CIs around a mean percentile estimate using
 #' non-parameteric bootstrapping from the boot package
 #' @export
-
 mean_ci <- function(observations, bootstraps = 100000,
                     conf = 0.95, type = 'bca'){
 
