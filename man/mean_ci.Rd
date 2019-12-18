@@ -14,9 +14,12 @@ defaults to 100000}
 
 \item{conf}{The confidence level wanted. Defaults to 95\% CI.}
 
-\item{type}{A vector of character strings represenging the type of intervals
+\item{type}{A vector of character strings representing the type of intervals
 required to calculate the CI. Defaults to "bca". See ??boot.ci
 for more information.}
+}
+\value{
+The estimated CIs around a mean estimate.
 }
 \description{
 \code{mean_ci}Function estimates CIs using nonparametric bootstrapping around a

@@ -5,8 +5,13 @@
 \title{Calculating the confidence intervals (CIs) of a quantile estimate of a
 a vector of observations using non-parametric bootstrapping.}
 \usage{
-quantile_ci(observations, percentile, bootstraps = 1e+05, conf = 0.95,
-  type = "bca")
+quantile_ci(
+  observations,
+  percentile,
+  bootstraps = 1e+05,
+  conf = 0.95,
+  type = "bca"
+)
 }
 \arguments{
 \item{observations}{A vector of observations given as numeric values}
@@ -18,16 +23,19 @@ defaults to 100000}
 
 \item{conf}{The confidence level wanted. Defaults to 95\% CI.}
 
-\item{type}{A vector of character strings represenging the type of intervals
+\item{type}{A vector of character strings representing the type of intervals
 required to calculate the CI. Defaults to "bca".
 See ??boot.ci for more information.}
+}
+\value{
+The quantile estimate and confidence intervals.
 }
 \description{
 \code{quantile_ci}Estimates CIs around a quantile percentile estimate using
 non-parameteric bootstrapping from the boot package
 }
 \examples{
-\dontrun{
+
 # Gather sightings of iNaturalist observations for four species:
 # Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 
@@ -37,7 +45,7 @@ non-parameteric bootstrapping from the boot package
 data(inat_examples)
 s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
 quantile_ci(observations = s_cybele$doy, percentile = 0.1, bootstraps = 100)
-}
+
 }
 \keyword{percentile}
 \keyword{phenology}
