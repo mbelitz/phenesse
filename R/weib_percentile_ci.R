@@ -35,6 +35,8 @@
 #' If not supplied, a cluster on the local machine is created for
 #' the duration of the boot call.
 #'
+#' @return Numeric percentile estimate of a seasonal abundance distribution.
+#'
 #' @keywords phenology weibull percentile
 #'
 #' @importFrom boot boot boot.ci

@@ -21,6 +21,8 @@
 #' required to calculate the CI. Defaults to "bca".
 #' See ??boot.ci for more information.
 #'
+#' @return quantile estimate of confidence intervals of a vector of observations.
+#'
 #' @keywords phenology quantile percentile
 #' @export
 #' @importFrom boot boot boot.ci
