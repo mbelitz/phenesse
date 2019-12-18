@@ -35,7 +35,7 @@
 #' If not supplied, a cluster on the local machine is created for
 #' the duration of the boot call.
 #'
-#' @return Numeric percentile estimate of a seasonal abundance distribution.
+#' @return The Weibull-corrected estimate of the percentile of interest and CIs.
 #'
 #' @keywords phenology weibull percentile
 #'

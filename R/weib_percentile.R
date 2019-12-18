@@ -15,7 +15,7 @@
 #' an estimate of bias of the original CDF. The bias is used to calculate
 #' a Weibull-corrected estimate of the percentile bound.
 #'
-#' @return The numeric percentile of the Weibull distribution
+#' @return The Weibull-corrected estimate of the percentile of interest.
 #'
 #' @keywords phenology weibull percentile
 #'
