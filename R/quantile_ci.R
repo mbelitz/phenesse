@@ -26,7 +26,7 @@
 #' @importFrom boot boot boot.ci
 #'
 #' @examples
-#'\dontrun{
+#'
 #' # Gather sightings of iNaturalist observations for four species:
 #' # Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 #'
@@ -36,7 +36,7 @@
 #' data(inat_examples)
 #' s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
 #' quantile_ci(observations = s_cybele$doy, percentile = 0.1, bootstraps = 100)
-#' }
+#'
 
 quantile_ci <- function(observations, percentile, bootstraps = 100000,
                         conf = 0.95, type = 'bca'){
