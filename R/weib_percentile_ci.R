@@ -47,7 +47,7 @@
 #' # Estimate when the first 50 percent of individuals of the butterfly species
 #' # Speyeria cybele are in flight.
 #'
-#'\dontrun{
+#'\donttest{
 #' data(inat_examples)
 #' s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
 #' weib_percentile_ci(observations = s_cybele$doy, iterations = 10,

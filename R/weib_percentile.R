@@ -20,7 +20,7 @@
 #' @importFrom fitdistrplus fitdist
 #'
 #' @examples
-#'\dontrun{
+#'\donttest{
 #' # Gather sightings of iNaturalist observations for four species:
 #' # Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 #'
