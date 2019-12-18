@@ -1,8 +1,8 @@
 ## Resubmission
-* Changed package title to title case
-* Added doi citation to package description
-* Removed work "package" from package description
-* Indcluded test environments, CMD check results, and dependency issues in cran-comments
+* Replaced dontrun{} with donttest{}
+* Unwrapped examples that run in less than 5 seconds
+* Added comment to weib_percentile line that was unexecutable
+* Added Rd-tags \value and explained returned results.
 
 ## Test environments
 * local Windows (mingw32) install, R 4.0.0
