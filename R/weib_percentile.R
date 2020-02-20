@@ -34,12 +34,17 @@
 #' weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 10)
 #'
 #' # Estimate when 90 percent of individuals of the milkweed species A. syriaca
-#' # have been observed, using only 100 iterations for quicker processing
+#' # have been observed, using only 10 iterations for quicker processing. To get
+#' more stable result, more observations should be used.
 #'
 #' weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 10)
 #' }
 #' @export
 weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
+
+  #' curve_intersect is a function to determine where two lines intersect
+  #' parameters needed are two dataframes with two columns, x and y, which could
+  #' be plotted.
 
   curve_intersect <- function(curve1, curve2, empirical=TRUE, domain=NULL) {
     if (!empirical & missing(domain)) {
@@ -73,6 +78,9 @@ weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
     return(list(x = point_x, y = point_y))
   }
 
+  #' Function to to solve for the CDF values of 0.01 and 0.99,
+  #'given our original observations
+
   create_cdf_ends <- function(observations){
     weib <- fitdistrplus::fitdist(observations, distr = "weibull",
                                   method = "mle")
@@ -87,6 +95,9 @@ weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
                         ^weib$estimate['shape'])
     return(added_vec)
   }
+
+  #' This function makes a data frame that will be used to plot a smooth
+  #' CDF from -0.001 to 1.001 given our original observations
 
   create_predict_df <- function(observations){
 
@@ -109,6 +120,9 @@ weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
     return(cdf_df)
 
   }
+
+  #' The function below calculates the theta hat value for each iteration, which
+  #' when averaged is used to calculate the bias value
 
   get_theta_hat_i <- function(observations, percentile = percentile){
 
@@ -134,12 +148,13 @@ weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
 
   theta_hat_df <- data.frame(x = observations, y = percentile)
 
+  # calculate theta hat original value
   theta_hat <- curve_intersect(create_predict_df(observations),
                                theta_hat_df)[['x']]
-
+  # calculate bias value based off of the mean of many theta hat i calculations
   bias <- mean(replicate(n = iterations,
                          expr = get_theta_hat_i(observations = observations,
                                                 percentile = percentile)))
-
+  # final calculation, which gives you theta bar!
   2 * theta_hat - bias
 }
