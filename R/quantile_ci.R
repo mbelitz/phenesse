@@ -6,8 +6,6 @@
 #' \code{quantile_ci}Estimates CIs around a quantile percentile estimate using
 #' non-parameteric bootstrapping from the boot package
 #'
-#' @inheritParams boot::boot.ci
-#'
 #' @param observations A vector of observations given as numeric values
 #'
 #' @param percentile The percentile of interest
@@ -48,29 +46,6 @@ quantile_ci <- function(observations, percentile, bootstraps = 100000,
     return(stats::quantile(d, probs = c(percentile)))
   }
 
-  estimate_ci <- function(observations){
-    bootstrap <- boot::boot(observations, quantilefun, R = bootstraps)
-    boot_ci <- boot::boot.ci(bootstrap, conf = conf, type = type)
-
-    if(type == "bca"){
-      low_ci <- boot_ci$bca[4]
-      high_ci <- boot_ci$bca[5]
-    } else if(type == "perc"){
-      low_ci <-boot_ci$percent[4]
-      high_ci <- boot_ci$percent[5]
-    } else if(type == "norm"){
-      low_ci <- boot_ci$normal[4]
-      high_ci <- boot_ci$normal[5]
-    } else if(type == "basic"){
-      low_ci <- boot_ci$basic[4]
-      high_ci <- boot_ci$basic[5]
-    } else{
-      low_ci <- "Bootstrap type NA"
-      high_ci <- "Bootstrap type NA"
-    }
-    ci_df <- data.frame(estimate = bootstrap$t0, low_ci, high_ci)
-    return(ci_df)
-  }
-  estimate <- estimate_ci(observations)
-  return(estimate)
+  estimate_ci(observations, .f = quantilefun, n_boots = bootstraps,
+              conf = conf, type = type)
 }

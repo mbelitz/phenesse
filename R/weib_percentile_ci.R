@@ -2,38 +2,18 @@
 #' distribution using the non-parametric bootstrapping.
 #'
 #' @description
-#' \code{weib_percentile_ci} uses non-parametric bootstrapping
+#' `weib_percentile_ci` uses non-parametric bootstrapping
 #' from the boot package to estimate 95% CIs around a weib_percentile estimate
 #'
-#' @param observations is a vector of dates/time of observations given as
-#' numeric values
-#'
-#' @param percentile is the percentile of the cumulative distribution function
-#' of interest
+#' @inheritParams estimate_ci
 #'
 #' @param iterations is the number of iterations you want to run to create
 #' empirical bootstrapping to estimate bias of original CDF. The bias is used to
 #' calculate a bias corrected estimate of the percentile bound.
-#'
+#' @param percentile is the percentile of the cumulative distribution function
+#' of interest
 #' @param bootstraps is the number of bootstraps you want to run to create the
 #' CIs
-#'
-#' @param type A vector of character strings representing the type of intervals
-#' required to calculate the CI. Defaults to "bca". See ??boot.ci for more
-#' information.
-#'
-#' @param conf The confidence level wanted. Defaults to 95\% CI.
-#'
-#' @param parallelize The type of parallel operation to be used (if any). If
-#' missing, the default is that no parallelization will occur. Parallelization
-#' options are "multicore" and "snow"
-#'
-#' @param ncpus An integer that represents the number of processes to be
-#' used in parallel operation.
-#'
-#' @param cl An optional parallel or snow cluster for use if parallel = "snow".
-#' If not supplied, a cluster on the local machine is created for
-#' the duration of the boot call.
 #'
 #' @return The Weibull-corrected estimate of the percentile of interest and CIs.
 #'
@@ -57,41 +37,17 @@
 #' }
 #'
 #'@export
+#'
 weib_percentile_ci <- function(observations, iterations, percentile, bootstraps,
                               type = "bca", conf = 0.95, parallelize = "no",
                               ncpus = getOption("boot.ncpus", 1L), cl = NULL){
 
   weibfun <- function(data, i){
     d <- data[i]
-    return(phenesse::weib_percentile(d, iterations = iterations,
-                                     percentile = percentile))
+    return(weib_percentile(d, iterations = iterations, percentile = percentile))
   }
 
-  estimate_ci <- function(observations){
-    bootstrap <- boot::boot(observations, weibfun, R = bootstraps,
-                            parallel = parallelize,
-                            ncpus = ncpus, cl = cl)
-    boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = conf, type = type),
-                        error = function(e) NA)
-    if(type == "bca"){
-      low_ci <- boot_ci$bca[4]
-      high_ci <- boot_ci$bca[5]
-    } else if(type == "perc"){
-      low_ci <-boot_ci$percent[4]
-      high_ci <- boot_ci$percent[5]
-    } else if(type == "norm"){
-      low_ci <- boot_ci$normal[4]
-      high_ci <- boot_ci$normal[5]
-    } else if(type == "basic"){
-      low_ci <- boot_ci$basic[4]
-      high_ci <- boot_ci$basic[5]
-    } else{
-      low_ci <- "Bootstrap type NA"
-      high_ci <- "Bootstrap type NA"
-    }
-    ci_df <- data.frame(estimate = bootstrap$t0, low_ci, high_ci)
-    return(ci_df)
-  }
-  estimate <- estimate_ci(observations)
-  return(estimate)
+  estimate_ci(observations, .f = weibfun, n_boots = bootstraps,
+              conf = conf, type = type, parallelize = parallelize,
+              ncpus = ncpus, cl = cl)
 }

@@ -52,7 +52,7 @@ the duration of the boot call.}
 The Weibull-corrected estimate of the percentile of interest and CIs.
 }
 \description{
-\code{weib_percentile_ci} uses non-parametric bootstrapping
+`weib_percentile_ci` uses non-parametric bootstrapping
 from the boot package to estimate 95% CIs around a weib_percentile estimate
 }
 \examples{
