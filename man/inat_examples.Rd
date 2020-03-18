@@ -4,7 +4,8 @@
 \name{inat_examples}
 \alias{inat_examples}
 \title{Example iNaturalist-sourced data}
-\format{A data frame with 252 rows and 6 variables:
+\format{
+A data frame with 252 rows and 6 variables:
 \describe{
    \item{scientific_name}{binomial of species}
    \item{latitude}{latitude where observations occurred}
@@ -13,7 +14,8 @@
    \item{observed_on}{original date listed of observation}
    \item{doy}{day of year when the observation occurred,
    variable created by MW Belitz using the package lubridate}
-   }}
+   }
+}
 \usage{
 data(inat_examples)
 }

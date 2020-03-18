@@ -2,7 +2,8 @@
 % Please edit documentation in R/utils.R
 \name{estimate_ci}
 \alias{estimate_ci}
-\title{Calculate confidence intervals using boostrap}
+\title{Calculate confidence intervals using boostrap of any statistical function
+of interest.}
 \usage{
 estimate_ci(
   observations,
@@ -45,5 +46,6 @@ information.}
 A data frame with estimate, and the lower and upper points of its confidence interval
 }
 \description{
-Calculate confidence intervals using boostrap
+Calculate confidence intervals using boostrap of any statistical function
+of interest.
 }
