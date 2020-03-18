@@ -2,7 +2,8 @@ Package: phenesse
 Title: Estimate Phenological Metrics using Presence-Only Data 
 Version: 0.1.0
 Authors@R: c(person("Michael", "Belitz", email = "mbelitz@ufl.edu", role = c("aut", "cre")),
-           person("Caitlin", "Campbell", email = "caitjcampbell@gmail.com", role = "ctb"))
+           person("Caitlin", "Campbell", email = "caitjcampbell@gmail.com", role = "ctb"),
+           person("Daijinag", "Li", email = "daijianglee@gmail.com", role = "ctb"))
 Description: Generates Weibull-parameterized estimates of phenology for any percentile of 
     a distribution using the framework established in Cooke (1979)
     <doi.org/10.1093/biomet/66.2.367>. Non-parametric bootstrapping can be used 
