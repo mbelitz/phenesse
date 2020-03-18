@@ -21,6 +21,8 @@
 #'
 #' @importFrom fitdistrplus fitdist
 #'
+#' @export
+#'
 #' @examples
 #'\donttest{
 #' # Gather sightings of iNaturalist observations for four species:
@@ -35,16 +37,16 @@
 #'
 #' # Estimate when 90 percent of individuals of the milkweed species A. syriaca
 #' # have been observed, using only 10 iterations for quicker processing. To get
-#' more stable result, more observations should be used.
+#' # more stable result, more observations should be used.
 #'
 #' weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 10)
 #' }
-#' @export
+#'
 weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
 
-  #' curve_intersect is a function to determine where two lines intersect
-  #' parameters needed are two dataframes with two columns, x and y, which could
-  #' be plotted.
+  # curve_intersect determines where two lines intersect
+  # parameters needed are two dataframes with two columns, x and y, which could
+  # be plotted.
 
   curve_intersect <- function(curve1, curve2, empirical=TRUE, domain=NULL) {
     if (!empirical & missing(domain)) {
@@ -58,7 +60,7 @@ weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
     if (empirical) {
       # Approximate the functional form of both curves
       curve1_f <- stats::approxfun(curve1$x, curve1$y, rule = 2)
-      curve2_f <- stats::approxfun(curve2$x, curve2$y, rule = 2)
+      curve2_f <- suppressWarnings(stats::approxfun(curve2$x, curve2$y, rule = 2))
 
       # Calculate the intersection of curve 1 and curve 2 along the x-axis
       point_x <- stats::uniroot(function(x) curve1_f(x) - curve2_f(x),
@@ -78,60 +80,44 @@ weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
     return(list(x = point_x, y = point_y))
   }
 
-  #' Function to to solve for the CDF values of 0.01 and 0.99,
-  #'given our original observations
+  # use a data frame to plot a smooth CDF from -0.001 to 1.001 given
+  # our original observations
 
-  create_cdf_ends <- function(observations){
+  create_predict_df <- function(observations){
+    # previous create_cdf_ends()
     weib <- fitdistrplus::fitdist(observations, distr = "weibull",
                                   method = "mle")
     cdf0 <- as.numeric(weib$estimate['scale']*
                          (-log(1-0.01))^(1/weib$estimate['shape']))
     cdf100 <- as.numeric(weib$estimate['scale']*
                            (-log(1-0.99))^(1/weib$estimate['shape']))
-
     added_vec <- sort(append(observations, values = c(cdf0, cdf100)),
                       decreasing = FALSE)
-    cdfadded <- 1 - exp(-(added_vec/weib$estimate['scale'])
-                        ^weib$estimate['shape'])
-    return(added_vec)
-  }
 
-  #' This function makes a data frame that will be used to plot a smooth
-  #' CDF from -0.001 to 1.001 given our original observations
+    new_vec <- seq(from = min(added_vec), to = max(added_vec), by = 0.5)
 
-  create_predict_df <- function(observations){
-
-    added_vec <- create_cdf_ends(observations)
-    vec_start <- min(added_vec)
-    vec_end <- max(added_vec)
-    new_vec <- seq(from = vec_start, to = vec_end, by = 0.5)
-
-    weib <- fitdistrplus::fitdist(observations, distr = "weibull",
-                                  method = "mle")
-    cdfadded <- 1 - exp(-(new_vec/weib$estimate['scale'])
-                        ^weib$estimate['shape'])
+    cdfadded <- 1 - exp(-(new_vec/weib$estimate['scale'])^weib$estimate['shape'])
 
     cdf_df <- data.frame(x = new_vec, y = cdfadded)
-    ends <- data.frame(x = c(min(added_vec - 1),
-                             max(added_vec+ 1)), y = c(-0.001,1.001))
+    ends <- data.frame(x = c(min(added_vec - 1), max(added_vec + 1)),
+                       y = c(-0.001,1.001))
     cdf_df <- rbind(cdf_df, ends)
     cdf_df <- cdf_df[order(cdf_df$x, decreasing = FALSE),]
 
     return(cdf_df)
-
   }
 
-  #' The function below calculates the theta hat value for each iteration, which
-  #' when averaged is used to calculate the bias value
+  # calculates the theta hat value for each iteration, which
+  # when averaged is used to calculate the bias value
 
-  get_theta_hat_i <- function(observations, percentile = percentile){
+  get_theta_hat_i <- function(observations, percentile){
 
     emptyvec <- vector(mode = "numeric", length = length(observations))
+    df1 <- create_predict_df(observations) # move out of loop since constant
 
     for(i in seq_along(observations)){
-      df1 <- create_predict_df(observations)
-      sim_vector <- stats::runif(n = length(observations),min = 0, max = 1)
-      df2 <- data.frame(x = observations, y = sim_vector[i])
+      sim_vector <- stats::runif(n = 1, min = 0, max = 1)
+      df2 <- data.frame(x = observations, y = sim_vector)
       emptyvec[i] <- curve_intersect(df1, df2)$x
     }
 
@@ -149,8 +135,8 @@ weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
   theta_hat_df <- data.frame(x = observations, y = percentile)
 
   # calculate theta hat original value
-  theta_hat <- curve_intersect(create_predict_df(observations),
-                               theta_hat_df)[['x']]
+  theta_hat <- curve_intersect(curve1 = create_predict_df(observations),
+                               curve2 = theta_hat_df)[['x']]
   # calculate bias value based off of the mean of many theta hat i calculations
   bias <- mean(replicate(n = iterations,
                          expr = get_theta_hat_i(observations = observations,
