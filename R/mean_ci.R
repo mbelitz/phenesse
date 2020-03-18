@@ -31,7 +31,7 @@
 #' # note low number of bootstraps for quick processing speed
 #'
 #' @describeIn mean_ci Estimates CIs around a mean percentile estimate using
-#' non-parameteric bootstrapping from the boot package
+#' non-parametric bootstrapping from the boot package
 #' @export
 mean_ci <- function(observations, bootstraps = 100000,
                     conf = 0.95, type = 'bca'){

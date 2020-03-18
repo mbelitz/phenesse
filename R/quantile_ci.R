@@ -4,7 +4,7 @@
 #' @description
 #'
 #' \code{quantile_ci}Estimates CIs around a quantile percentile estimate using
-#' non-parameteric bootstrapping from the boot package
+#' non-parametric bootstrapping from the boot package
 #'
 #' @param observations A vector of observations given as numeric values
 #'
