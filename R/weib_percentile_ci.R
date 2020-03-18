@@ -2,7 +2,7 @@
 #' distribution using the non-parametric bootstrapping.
 #'
 #' @description
-#' `weib_percentile_ci` uses non-parametric bootstrapping
+#' \code{weib_percentile_ci} uses non-parametric bootstrapping
 #' from the boot package to estimate 95% CIs around a weib_percentile estimate
 #'
 #' @inheritParams estimate_ci

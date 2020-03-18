@@ -10,7 +10,7 @@ vignette: >
   %\usepackage[utf8]{inputenc}
 ---
 
-```{r setup, include = FALSE, cache = FALSE}
+```{r setup, include = FALSE, cache = FALSE, warning=FALSE}
 knitr::opts_chunk$set(
   cache = FALSE,
   collapse = TRUE,
@@ -25,8 +25,7 @@ library(phenesse)
 
 # Overview
 
-The R package 'phenesse' provides functions to calculate phenological estimates for multiple phenological metrics. It can be especially useful when estimating the onset or offset of a 
-phenological event using presence-only data. 
+The R package 'phenesse' provides functions to calculate phenological estimates for multiple phenological metrics. It can be especially useful when estimating the onset or offset of a phenological event using presence-only data. 
 
 ```{r load_phenesse}
 library(phenesse)

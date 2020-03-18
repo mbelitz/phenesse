@@ -1,4 +1,5 @@
-#' Calculate confidence intervals using boostrap
+#' Calculate confidence intervals using boostrap of any statistical function
+#' of interest.
 #'
 #' @param observations is a vector of dates/time of observations given as
 #' numeric values
