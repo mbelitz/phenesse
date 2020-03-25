@@ -30,8 +30,6 @@ estimate_ci <- function(observations, .f, n_boots,
                           ncpus = ncpus, cl = cl)
   boot_ci <- tryCatch(boot::boot.ci(bootstrap, conf = conf, type = type),
                       error = function(e) NA)
-  if(is.na(boot_ci))
-    return(data.frame(estimate = bootstrap$t0, low_ci = NA, high_ci = NA))
 
   if(type == "bca"){
     low_ci <- boot_ci$bca[4]

@@ -7,12 +7,12 @@ Authors@R: c(person("Michael", "Belitz", email = "mbelitz@ufl.edu", role = c("au
 Description: Generates Weibull-parameterized estimates of phenology for any percentile of 
     a distribution using the framework established in Cooke (1979)
     <doi.org/10.1093/biomet/66.2.367>. Extensive testing against other 
-    estimators suggest weib_percentile is especially useful in generating more 
-    accurate and less biased estimates of onset and offset. Non-parametric 
-    bootstrapping can be used to generate confidence intervals around those 
-    estimates. Additionally, this package offers an easy way to perform non-
-    parametric bootstrapping to generate confidence intervals for quantile 
-    estimates, mean estimates, or any statistical function of interest.
+    estimators suggest the weib_percentile function is especially useful in 
+    generating more accurate and less biased estimates of onset and offset. 
+    Non-parametric bootstrapping can be used to generate confidence intervals 
+    around those estimates. Additionally, this package offers an easy way to 
+    perform non-parametric bootstrapping to generate confidence intervals for 
+    quantile estimates, mean estimates, or any statistical function of interest.
 Maintainer: Michael Belitz <mbelitz@ufl.edu>
 Suggests: 
     knitr,
