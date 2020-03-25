@@ -18,3 +18,6 @@ New submission
 
 ## Downstream dependencies
 There are currently no downstream dependencies for this package.
+
+## Patch Submission
+* Removed duplication to speed up calculations
