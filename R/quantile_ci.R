@@ -46,6 +46,6 @@ quantile_ci <- function(observations, percentile, bootstraps = 100000,
     return(stats::quantile(d, probs = c(percentile)))
   }
 
-  estimate_ci(observations, .f = quantilefun, n_boots = bootstraps,
+  phenesse::estimate_ci(observations, .f = quantilefun, n_boots = bootstraps,
               conf = conf, type = type)
 }

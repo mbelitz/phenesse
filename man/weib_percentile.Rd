@@ -5,7 +5,7 @@
 \title{Calculating a percentile estimate of a seasonal abundance distribution from
 incidental observations.}
 \usage{
-weib_percentile(observations, percentile = 0.9, iterations = 500)
+weib_percentile(observations, percentile, iterations = 500)
 }
 \arguments{
 \item{observations}{is a vector of dates/time of observations

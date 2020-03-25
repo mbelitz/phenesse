@@ -42,7 +42,7 @@
 #' weib_percentile(a_syriaca$doy, percentile = 0.5, iterations = 10)
 #' }
 #'
-weib_percentile <- function(observations, percentile = 0.9, iterations = 500){
+weib_percentile <- function(observations, percentile, iterations = 500){
 
   # curve_intersect determines where two lines intersect
   # parameters needed are two dataframes with two columns, x and y, which could

@@ -32,7 +32,7 @@ The quantile estimate and confidence intervals.
 }
 \description{
 \code{quantile_ci}Estimates CIs around a quantile percentile estimate using
-non-parameteric bootstrapping from the boot package
+non-parametric bootstrapping from the boot package
 }
 \examples{
 

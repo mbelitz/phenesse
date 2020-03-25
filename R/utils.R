@@ -19,7 +19,7 @@
 #' If not supplied, a cluster on the local machine is created for
 #' the duration of the boot call.
 #' @return A data frame with estimate, and the lower and upper points of its confidence interval
-#'
+#' @export
 estimate_ci <- function(observations, .f, n_boots,
                         parallelize = "no",
                         ncpus = getOption("boot.ncpus", 1L),

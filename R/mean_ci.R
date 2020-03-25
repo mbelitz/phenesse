@@ -24,7 +24,7 @@
 #' @examples
 #' # Estimate when the mean observation of Rudbeckia hirta for the year 2019 up
 #' # to October
-#'
+#' data(inat_examples)
 #' r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
 #' mean_ci(observations = r_hirta$doy , bootstraps = 100)
 #'
@@ -41,6 +41,6 @@ mean_ci <- function(observations, bootstraps = 100000,
     return(mean(d))
   }
 
-  estimate_ci(observations, .f = meanfun, n_boots = bootstraps,
+  phenesse::estimate_ci(observations, .f = meanfun, n_boots = bootstraps,
               conf = conf, type = type)
 }

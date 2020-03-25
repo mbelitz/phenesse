@@ -28,13 +28,13 @@ mean estimate.
 \section{Functions}{
 \itemize{
 \item \code{mean_ci}: Estimates CIs around a mean percentile estimate using
-non-parameteric bootstrapping from the boot package
+non-parametric bootstrapping from the boot package
 }}
 
 \examples{
 # Estimate when the mean observation of Rudbeckia hirta for the year 2019 up
 # to October
-
+data(inat_examples)
 r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
 mean_ci(observations = r_hirta$doy , bootstraps = 100)
 
