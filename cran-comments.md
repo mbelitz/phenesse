@@ -21,3 +21,8 @@ There are currently no downstream dependencies for this package.
 
 ## Patch Submission
 * Removed duplication to speed up calculations
+
+## Patch resubmission
+* Changed style that I wrote the DOI as
+* Added parentheses around function name
+

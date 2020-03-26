@@ -6,8 +6,8 @@ Authors@R: c(person("Michael", "Belitz", email = "mbelitz@ufl.edu", role = c("au
            person("Daijinag", "Li", email = "daijianglee@gmail.com", role = "ctb"))
 Description: Generates Weibull-parameterized estimates of phenology for any percentile of 
     a distribution using the framework established in Cooke (1979)
-    <doi.org/10.1093/biomet/66.2.367>. Extensive testing against other 
-    estimators suggest the weib_percentile function is especially useful in 
+    <doi:10.1093/biomet/66.2.367>.. Extensive testing against other 
+    estimators suggest the weib_percentile() function is especially useful in 
     generating more accurate and less biased estimates of onset and offset. 
     Non-parametric bootstrapping can be used to generate confidence intervals 
     around those estimates. Additionally, this package offers an easy way to 
