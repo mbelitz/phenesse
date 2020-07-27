@@ -1,0 +1,41 @@
+citHeader("To cite phenesse in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "The accuracy of phenology estimators for use with sparesely sampled presence-only observations",
+  author   = personList(
+    as.person("Michael W. Belitz"),
+    as.person("Elise A. Larsen"),
+    as.person("Leslie Ries"),
+    as.person("Robert P. Guralnick")
+    ),
+  journal  = "Methods in Ecology and Evolution",
+  year     = "2020",
+  publisher= "Wiley Online Library",
+  url      = "https://doi.org/10.1111/2041-210X.13448",
+  textVersion = paste(
+  "Belitz, Michael W., Elise A. Larsen, Leslie Ries, and Robert P. Guralnick.",
+  "The accuracy of phenology estimators for use with sparesely sampled presence-only observations.",
+  "Methods in Ecology and Evolution, (2020)",
+  "10.1111/2041-210X.13448"
+  )
+  )
+
+citEntry(
+  entry    = "Misc",
+  title    = "{phenesse}: Estimate Phenological Metrics using Presence-Only Data",
+  author   = personList(
+    as.person("Michael W. Belitz"),
+    as.person("Caitlin J. Campbell"),
+    as.person("Daijiang Li")
+    ),
+  year     = "2020",
+  version  = "0.1.2",
+  url      = "https://CRAN.R-project.org/package=phenesse",
+  textVersion = paste(
+  "Belitz, Michael W., Caitlin J. Campbell, Daijiang Li (2020).",
+  "phenesse: Estimate Phenological Metrics using Presence-Only Data.",
+  "R package version 0.1.2.",
+  "https://CRAN.R-project.org/package=phenesse"
+  )
+)
