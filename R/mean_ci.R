@@ -34,7 +34,7 @@
 #' non-parametric bootstrapping from the boot package
 #' @export
 mean_ci <- function(observations, bootstraps = 100000,
-                    conf = 0.95, type = 'bca'){
+                    conf = 0.95, type = 'perc'){
 
   meanfun <- function(data, i){
     d <- data[i]
