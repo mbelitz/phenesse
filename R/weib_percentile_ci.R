@@ -27,19 +27,22 @@
 #' # Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 #'
 #' # Estimate when the first 50 percent of individuals of the butterfly species
-#' # Speyeria cybele are in flight.
+#' # Speyeria cybele are in flight. Note, only 10 iterations are beingg used
+#' # in this example to keep computation time low, but more iterations should
+#' # be used to get a more stable result. See vignette for parallelization
+#' # options.
 #'
 #'\donttest{
 #' data(inat_examples)
 #' s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
 #' weib_percentile_ci(observations = s_cybele$doy, iterations = 10,
-#'                    percentile = 0.5, bootstraps = 10)
+#'                    percentile = 0.5, bootstraps = 100)
 #' }
 #'
 #'@export
 #'
 weib_percentile_ci <- function(observations, iterations, percentile, bootstraps,
-                              type = "bca", conf = 0.95, parallelize = "no",
+                              type = "perc", conf = 0.95, parallelize = "no",
                               ncpus = getOption("boot.ncpus", 1L), cl = NULL){
 
   weibfun <- function(data, i){
