@@ -1,18 +1,20 @@
 Package: phenesse
 Title: Estimate Phenological Metrics using Presence-Only Data 
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(person("Michael", "Belitz", email = "mbelitz@ufl.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-8162-5998")),
            person("Caitlin", "Campbell", email = "caitjcampbell@gmail.com", role = "ctb", comment = c(ORCID = "0000-0002-8199-7775")),
            person("Daijiang", "Li", email = "daijianglee@gmail.com", role = "ctb", comment = c(ORCID = "0000-0002-0925-3421))
 Description: Generates Weibull-parameterized estimates of phenology for any percentile of 
     a distribution using the framework established in Cooke (1979)
-    <doi:10.1093/biomet/66.2.367>.. Extensive testing against other 
+    <doi:10.1093/biomet/66.2.367>. Extensive testing against other 
     estimators suggest the weib_percentile() function is especially useful in 
-    generating more accurate and less biased estimates of onset and offset. 
-    Non-parametric bootstrapping can be used to generate confidence intervals 
-    around those estimates. Additionally, this package offers an easy way to 
-    perform non-parametric bootstrapping to generate confidence intervals for 
-    quantile estimates, mean estimates, or any statistical function of interest.
+    generating more accurate and less biased estimates of onset and offset 
+    (Belitz et al. 2020 <doi.org:10.1111/2041-210X.13448>. Non-parametric 
+    bootstrapping can be used to generate confidence intervals around those 
+    estimates, although this is computationally expenesive. Additionally, this 
+    package offers an easy way to perform non-parametric bootstrapping to 
+    generate confidence intervals for quantile estimates, mean estimates, 
+    or any statistical function of interest.
 Maintainer: Michael Belitz <mbelitz@ufl.edu>
 Suggests: 
     knitr,
