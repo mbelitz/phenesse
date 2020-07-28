@@ -10,7 +10,7 @@ quantile_ci(
   percentile,
   bootstraps = 1e+05,
   conf = 0.95,
-  type = "bca"
+  type = "perc"
 )
 }
 \arguments{
@@ -46,6 +46,7 @@ data(inat_examples)
 s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
 quantile_ci(observations = s_cybele$doy, percentile = 0.1, bootstraps = 100)
 
+# note low number of bootstraps for quick processing speed
 }
 \keyword{percentile}
 \keyword{phenology}

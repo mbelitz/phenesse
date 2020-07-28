@@ -10,7 +10,7 @@ weib_percentile_ci(
   iterations,
   percentile,
   bootstraps,
-  type = "bca",
+  type = "perc",
   conf = 0.95,
   parallelize = "no",
   ncpus = getOption("boot.ncpus", 1L),
@@ -32,7 +32,7 @@ of interest}
 CIs}
 
 \item{type}{A vector of character strings representing the type of intervals
-required to calculate the CI. Defaults to "bca". See ??boot.ci for more
+required to calculate the CI. Defaults to "perc". See ??boot.ci for more
 information.}
 
 \item{conf}{The confidence level wanted. Defaults to 95\% CI.}
@@ -61,13 +61,16 @@ from the boot package to estimate 95% CIs around a weib_percentile estimate
 # Danaus plexippus, Speyeria cybele, Rudbeckia hirta, and Asclepias syriaca
 
 # Estimate when the first 50 percent of individuals of the butterfly species
-# Speyeria cybele are in flight.
+# Speyeria cybele are in flight. Note, only 10 iterations are beingg used
+# in this example to keep computation time low, but more iterations should
+# be used to get a more stable result. See vignette for parallelization
+# options.
 
 \donttest{
 data(inat_examples)
 s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
 weib_percentile_ci(observations = s_cybele$doy, iterations = 10,
-                   percentile = 0.5, bootstraps = 10)
+                   percentile = 0.5, bootstraps = 100)
 }
 
 }

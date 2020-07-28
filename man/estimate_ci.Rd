@@ -12,7 +12,7 @@ estimate_ci(
   parallelize = "no",
   ncpus = getOption("boot.ncpus", 1L),
   cl = NULL,
-  type = "bca",
+  type = "perc",
   conf = 0.95
 )
 }
@@ -37,7 +37,7 @@ If not supplied, a cluster on the local machine is created for
 the duration of the boot call.}
 
 \item{type}{A vector of character strings representing the type of intervals
-required to calculate the CI. Defaults to "bca". See ??boot.ci for more
+required to calculate the CI. Defaults to "perc". See ??boot.ci for more
 information.}
 
 \item{conf}{The confidence level wanted. Defaults to 95\% CI.}
