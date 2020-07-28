@@ -2,8 +2,7 @@
 `phenesse`: Estimate phenological metrics using presence-only data 
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/phenesse)](https://cran.r-project.org/package=phenesse)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3956449.svg)](https://doi.org/10.5281/zenodo.3956449)
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3964458.svg)](https://doi.org/10.5281/zenodo.3964458)
 
 The `phenesse` package provides tools in `R` to estimate phenological metrics using presence only data. The package includes a new Weibull-parameterized estimator described in Belitz et al. (2020) (https://doi.org/10.1111/2041-210X.13448). Additionally, the package provides a non-parametric bootstrap approach to estimating confidence intervals for this estimator as well as quantile and mean estimates. 
 
