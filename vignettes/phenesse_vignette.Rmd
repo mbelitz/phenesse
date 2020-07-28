@@ -83,12 +83,11 @@ There is a built in option to run the bootstraps in parallel. To do so, change t
 
 ```{r parallelize}
 # parallelize the above calculation using multicore parallelization and 4 cores. 
-weib_percentile_ci(observations = s_cybele$doy, iterations = 10,
-                    percentile = 0.01, bootstraps = 100, 
-                   parallelize = "multicore", ncpus = 4)
+# weib_percentile_ci(observations = s_cybele$doy, iterations = 10,
+#                    percentile = 0.01, bootstraps = 100, 
+#                   parallelize = "multicore", ncpus = 4)
+# not run because having multiple cores in running in vignette gives check_rhub warnings
 ```
-
-Note how different the two weib_percentile_ci estimates are. In order to get more stable results, more iterations should be used. To keep the vignette knitting quick, the number of iterations used here are small.
 
 Another option I have found useful when running many confidence interval calculations is to make a list of the observations that you want to estimate the CIs of and use mclapply (multiple core lapply) to estimate apply a function containing the weib_percentile_ci over a list using multiple cores. I often find this to be faster than using the built-in parallelization when estimating many weib_percentile_ci estimates and using 40 cores.   
 
