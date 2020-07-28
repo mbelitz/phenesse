@@ -1,4 +1,4 @@
-#' Calculate confidence intervals using bootsrap of any statistical function
+#' Calculate confidence intervals using bootstrap of any statistical function
 #' of interest.
 #'
 #' @param observations is a vector of dates/time of observations given as

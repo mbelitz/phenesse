@@ -11,7 +11,7 @@ Description: Generates Weibull-parameterized estimates of phenology for any perc
     generating more accurate and less biased estimates of onset and offset 
     (Belitz et al. 2020 <doi.org:10.1111/2041-210X.13448>. Non-parametric 
     bootstrapping can be used to generate confidence intervals around those 
-    estimates, although this is computationally expenesive. Additionally, this 
+    estimates, although this is computationally expensive. Additionally, this 
     package offers an easy way to perform non-parametric bootstrapping to 
     generate confidence intervals for quantile estimates, mean estimates, 
     or any statistical function of interest.
