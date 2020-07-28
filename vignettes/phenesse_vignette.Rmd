@@ -25,7 +25,7 @@ library(phenesse)
 
 # Overview
 
-The R package 'phenesse' provides functions to calculate phenological estimates for multiple phenological metrics. It can be especially useful when estimating the onset or offset of a phenological event using presence-only data. 
+The R package 'phenesse' provides functions to calculate Weibull-parameterized estimates of phenology for any percentile of a distribution (except 0 and 100). The algorithm of the estimator is described in Belitz et al (2020) <https://doi.org/10.1111/2041-210X.13448>. This publication also describes the results of detailed simulations and empirical examples documenting the efficacy of the estimator and other commonly used phenology estimators. We found the Weibull-parameterized estimator to be especially useful when estimating the onset or offset of phenology events using presence-only data. 
 
 ```{r load_phenesse}
 library(phenesse)
@@ -41,40 +41,61 @@ example iNaturalist data:
 inat_examples <- inat_examples
 ```
 
-# Use the Weibull-corrected estimates for any percentile of a distribution. 
+# The main function of 'phenesse': weib_percentile 
 
-Estimate the onset, 10% and 50% of when Speyeria cybele has been observed in 2019 across the entire extent.
+## weib_percentile calculates a Weibull-parameterized estimate of phenology for any percentile of a distribution
+
+Estimate the onset (0.01%), 10% and 50% of when Speyeria cybele has been observed in 2019 across the entire extent. We recommend at least 250 iterations are run to get a stable estimate. The default number of iterations is 500.
 
 ```{r Speyeria_cybele_estimates}
 s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
 
-# calculate onset, note iterations are much lower than desired for quick 
-# vignette knit. Increase interations for robust calculations
-weib_percentile(observations = s_cybele$doy, percentile = 0, iterations = 20)
-#calculate 1st percentile
-weib_percentile(observations = s_cybele$doy, percentile = 0.1, iterations = 20)
+# calculate onset
+weib_percentile(observations = s_cybele$doy, percentile = 0.01, iterations = 250) 
+# note that the Weibull distribution does not estimate true 0th and 100th percentiles. Therefore the user must choose a percentile (quantile) between 0 and 1. 
+
+#calculate 10th percentile
+weib_percentile(observations = s_cybele$doy, percentile = 0.1, iterations = 250)
+
 #calculate 50th percentile
-weib_percentile(observations = s_cybele$doy, percentile = 0.5, iterations = 20)
+weib_percentile(observations = s_cybele$doy, percentile = 0.5) 
 ```
 
 # Use non-parametric bootstrapping to calculate confidence interval of estimate
 
 ## CAUTION: Calculating confidence interval of Weibull-corrected estimates are computationally expensive. Consider options to parallelize calculations
 
-Estimate the 50% of when Speyeria cybele were observed in 2019 and calculate CI
+Estimate the beginning of when Speyeria cybele were observed in 2019 and calculate CI
 
 ```{r Speyeria_cybele_CIestimates}
 s_cybele <- subset(inat_examples, scientific_name == "Speyeria cybele")
 
-# calculate onset - note ignoring for vignette test
-#weib_percentile_ci(observations = s_cybele$doy, iterations = 50,
-# percentile = 0.5, bootstraps = 50)
-# note warnings of extreme order points used as endpoints is due to the 
-# low number of bootsraps used. Please use higher number of bootstraps if 
-# using for analyses.
+# calculate onset, we're using very low iterations and bootstraps to knit vignette quickly. Please increase both iterations and bootstraps if using for analyses
+weib_percentile_ci(observations = s_cybele$doy, iterations = 10,
+ percentile = 0.01, bootstraps = 100)
+# note warning that extreme order statistics used as endpoints. Increase number of bootstraps to avoid this warning.
+
 ```
 
-# Use functions to calculate confidence interval of quantile function and mean estimates
+## Options to parallelize weib_percentile_ci
+
+There is a built in option to run the bootstraps in parallel. To do so, change the parameter "parallelize" to either "multicore" or "snow" and choose the number of processes to be used in parallel operation (ncpus).
+
+```{r parallelize}
+# parallelize the above calculation using multicore parallelization and 4 cores. 
+weib_percentile_ci(observations = s_cybele$doy, iterations = 10,
+                    percentile = 0.01, bootstraps = 100, 
+                   parallelize = "multicore", ncpus = 4)
+```
+
+Note how different the two weib_percentile_ci estimates are. In order to get more stable results, more iterations should be used. To keep the vignette knitting quick, the number of iterations used here are small.
+
+Another option I have found useful when running many confidence interval calculations is to make a list of the observations that you want to estimate the CIs of and use mclapply (multiple core lapply) to estimate apply a function containing the weib_percentile_ci over a list using multiple cores. I often find this to be faster than using the built-in parallelization when estimating many weib_percentile_ci estimates and using 40 cores.   
+
+
+# CIs for mean and quantile estimates
+
+## Another functionality of phenesse, is it provides functions to calculate confidence intervals of quantile and mean estimates using non-parametric bootstrapping
 
 Estimate the 10% and 50% phenometrics and confidence intervals for a quantile estimate of Rudbeckia hirta.
 
@@ -82,7 +103,7 @@ Estimate the 10% and 50% phenometrics and confidence intervals for a quantile es
 r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
 
 # calculate 50% quantile and CIs
-quantile_ci(observations = r_hirta$doy, percentile = 0.5, bootstraps = 100)
+quantile_ci(observations = r_hirta$doy, percentile = 0.5)
 ```
 
 Calculate the mean estimate and confidence intervals of the estimate of Rudbeckia hirta.
@@ -90,7 +111,7 @@ Calculate the mean estimate and confidence intervals of the estimate of Rudbecki
 ```{r mean_CIestimates}
 r_hirta <- subset(inat_examples, scientific_name == "Rudbeckia hirta")
 
-# calculate 50% quantile and CIs
-mean_ci(observations = r_hirta$doy, bootstraps = 100)
+# calculate mean and CIs
+mean_ci(observations = r_hirta$doy)
 ```
 
