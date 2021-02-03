@@ -1,3 +1,6 @@
+# phenesse 0.1.3
+* changed DOI to recommended format in DESCRIPTION
+
 # phenesse 0.1.2
 
 * removed option to estimate (pseudo)-0th and 100th percentile
