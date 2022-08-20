@@ -1,4 +1,4 @@
-#' Calculate confidence intervals using bootsrap of any statistical function
+#' Calculate confidence intervals using bootstrap of any statistical function
 #' of interest.
 #'
 #' @param observations is a vector of dates/time of observations given as
@@ -7,7 +7,7 @@
 #' @param n_boots is the number of bootstraps you want to run to create the
 #' CIs
 #' @param type A vector of character strings representing the type of intervals
-#' required to calculate the CI. Defaults to "bca". See ??boot.ci for more
+#' required to calculate the CI. Defaults to "perc". See ??boot.ci for more
 #' information.
 #' @param conf The confidence level wanted. Defaults to 95\% CI.
 #' @param parallelize The type of parallel operation to be used (if any). If
@@ -24,7 +24,7 @@ estimate_ci <- function(observations, .f, n_boots,
                         parallelize = "no",
                         ncpus = getOption("boot.ncpus", 1L),
                         cl = NULL,
-                        type = "bca", conf = 0.95){
+                        type = "perc", conf = 0.95){
   bootstrap <- boot::boot(observations, .f, R = n_boots,
                           parallel = parallelize,
                           ncpus = ncpus, cl = cl)

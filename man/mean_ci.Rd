@@ -4,7 +4,7 @@
 \alias{mean_ci}
 \title{Calculating the confidence intervals (CIs) of an arithmetic mean.}
 \usage{
-mean_ci(observations, bootstraps = 1e+05, conf = 0.95, type = "bca")
+mean_ci(observations, bootstraps = 1e+05, conf = 0.95, type = "perc")
 }
 \arguments{
 \item{observations}{A vector of observations given as numeric values}
