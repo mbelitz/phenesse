@@ -93,8 +93,11 @@ weib_percentile <- function(observations, percentile, iterations = 500){
 
     create_predict_df <- function(observations){
       # previous create_cdf_ends()
-      weib <- fitdistrplus::fitdist(observations, distr = "weibull",
-                                    method = "mle")
+      suppressWarnings({
+        weib <- fitdistrplus::fitdist(observations, distr = "weibull",
+                                      method = "mle")
+      })
+
       cdf0 <- as.numeric(weib$estimate['scale']*
                            (-log(1-0.01))^(1/weib$estimate['shape']))
       cdf100 <- as.numeric(weib$estimate['scale']*
