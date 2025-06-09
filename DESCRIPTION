@@ -1,6 +1,5 @@
 Package: phenesse
 Title: Estimate Phenological Metrics using Presence-Only Data 
-
 Version: 0.1.2
 Authors@R: c(person("Michael", "Belitz", email = "michaelbelitz06@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-8162-5998")),
            person("Caitlin", "Campbell", email = "caitjcampbell@gmail.com", role = "ctb", comment = c(ORCID = "0000-0002-8199-7775")),
