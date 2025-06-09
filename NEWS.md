@@ -1,5 +1,6 @@
 # phenesse 0.1.3
 * changed DOI to recommended format in DESCRIPTION
+* changed authors to recommend format in DESCRIPTION and CITATION
 
 # phenesse 0.1.2
 
