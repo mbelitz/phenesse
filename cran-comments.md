@@ -26,3 +26,5 @@ There are currently no downstream dependencies for this package.
 * Changed style that I wrote the DOI as
 * Added parentheses around function name
 
+## Patch resubmission
+* Changed style for authors in DESCRIPTION and CITATION
