@@ -36,6 +36,6 @@ View(inat_examples)
 }
 }
 \references{
-\url{https://inaturalist.org}
+\url{https://www.inaturalist.org/}
 }
 \keyword{datasets}
