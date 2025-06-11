@@ -2,7 +2,7 @@
 `phenesse`: Estimate phenological metrics using presence-only data 
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/phenesse)](https://cran.r-project.org/package=phenesse)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3964458.svg)](https://doi.org/10.5281/zenodo.3964458)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15642105.svg)](https://doi.org/10.5281/zenodo.15642105)
 
 <img style="float: left;" align = "left" src = "hexsticker.png" width = 180>
 
